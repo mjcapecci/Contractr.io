@@ -1,0 +1,35 @@
+{
+  "name": "contractr.io",
+  "version": "1.0.0",
+  "description": "An application for connecting people with local contractors for hire",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon -r dotenv/config server.js",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjcapecci/Contractr.io.git"
+  },
+  "author": "Michael Capecci",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjcapecci/Contractr.io/issues"
+  },
+  "homepage": "https://github.com/mjcapecci/Contractr.io#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "google-auth-library": "^5.10.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.2"
+  }
+}
