@@ -1,13 +1,7 @@
-import React, { Fragment } from 'react';
-
-import Layout from '../components/Layout';
+import React from 'react';
 
 const Landing = () => {
-  return (
-    <Fragment>
-      <Layout></Layout>
-    </Fragment>
-  );
+  return <div className='landing'>LANDING</div>;
 };
 
 export default Landing;
