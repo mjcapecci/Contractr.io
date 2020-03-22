@@ -1,37 +1,43 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './layout.scss';
 
-const Navbar = () => {
-  const [activeLink, setActiveLink] = useState(1);
+const Navbar = props => {
+  const path = useLocation().pathname;
+
+  const [activeLink, setActiveLink] = useState(path);
 
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark justify-content-between shadow'>
-      <Link className='navbar-brand'>Contractr.io</Link>
+      <Link className='navbar-brand' to='/'>
+        Contractr.io
+      </Link>
       <ul className='navbar-nav'>
         <li className='nav-item'>
           <Link
-            className={activeLink !== 1 ? 'nav-link' : 'nav-link active'}
+            className={activeLink !== '/' ? 'nav-link' : 'nav-link active'}
             to='/'
-            onClick={() => setActiveLink(1)}
+            onClick={() => setActiveLink('/')}
           >
             Landing
           </Link>
         </li>
         <li className='nav-item'>
           <Link
-            className={activeLink !== 2 ? 'nav-link' : 'nav-link active'}
+            className={
+              activeLink !== '/search' ? 'nav-link' : 'nav-link active'
+            }
             to='/search'
-            onClick={() => setActiveLink(2)}
+            onClick={() => setActiveLink('/search')}
           >
             Search
           </Link>
         </li>
         <li className='nav-item'>
           <Link
-            className={activeLink !== 3 ? 'nav-link' : 'nav-link active'}
+            className={activeLink !== '/login' ? 'nav-link' : 'nav-link active'}
             to='/login'
-            onClick={() => setActiveLink(3)}
+            onClick={() => setActiveLink('/login')}
           >
             Login
           </Link>
