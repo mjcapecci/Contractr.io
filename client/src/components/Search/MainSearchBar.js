@@ -11,8 +11,8 @@ const MainSearchBar = () => {
       <input
         type='text'
         className='form-control mr-3 rounded-right'
-        placeholder='Who are you looking for?'
-        aria-label='Who are you looking for?'
+        placeholder='Skills, Keywords, Etc.'
+        aria-label='Skills, Keywords, Etc.'
         aria-describedby='addon-wrapping'
       />
       <div className='input-group-prepend'>
