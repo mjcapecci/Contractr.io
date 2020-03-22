@@ -1,7 +1,15 @@
 const express = require('express');
 const app = express();
+const db = require('./utils/db');
 
 app.use(express.json({ extended: false }));
+
+db.connect(err => {
+  if (err) {
+    throw err;
+  }
+  console.log('MySQL Connected');
+});
 
 // Define Routes
 // app.use('/api/users', require('./routes/users'));
