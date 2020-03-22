@@ -13,6 +13,7 @@ import Footer from './components/Layout/Footer';
 // Pages
 import Landing from './pages/Landing';
 import Search from './pages/Search';
+import User from './pages/User';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Switch>
               <Route exact path='/' component={Landing} />
               <Route exact path='/search' component={Search} />
+              <Route exact path='/user/:user' component={User} />
             </Switch>
           </div>
           <Footer></Footer>

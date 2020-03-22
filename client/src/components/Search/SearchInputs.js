@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SearchInputs = ({ data }) => {
   return (
@@ -18,6 +19,9 @@ const SearchInputs = ({ data }) => {
           </div>
           <div className='worker-search-bio col-sm'>
             <p>{data.bio}</p>
+            <p>
+              Go to <Link to={`/user/${data.user}`}>Profile</Link>
+            </p>
           </div>
         </div>
       </div>

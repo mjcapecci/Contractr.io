@@ -9,6 +9,7 @@ const SearchInputGroup = () => {
   const sampleInputs = [
     {
       name: 'Dave Roberts',
+      user: 'droberts',
       skills: 'Carpentry, Electrical',
       location: 'Somewhere, USA',
       website: `www.daveroberts.com`,
@@ -16,6 +17,7 @@ const SearchInputGroup = () => {
     },
     {
       name: 'Melissa Jones',
+      user: 'mjones',
       skills: 'Carpentry, Electrical',
       location: 'Somewhere, USA',
       website: `www.melissajones.com`,
@@ -23,6 +25,7 @@ const SearchInputGroup = () => {
     },
     {
       name: 'Elija Smith',
+      user: 'esmith',
       skills: 'Carpentry, Electrical',
       location: 'Somewhere, USA',
       website: `www.elijasmith.com`,
@@ -30,6 +33,7 @@ const SearchInputGroup = () => {
     },
     {
       name: 'Sara Robertson',
+      user: 'srobertson',
       skills: 'Carpentry, Electrical',
       location: 'Somewhere, USA',
       website: `www.elijasmith.com`,
@@ -37,6 +41,7 @@ const SearchInputGroup = () => {
     },
     {
       name: 'Ezio Belafonte',
+      user: 'ebelafonte',
       skills: 'Carpentry, Electrical',
       location: 'Somewhere, USA',
       website: `www.elijasmith.com`,
