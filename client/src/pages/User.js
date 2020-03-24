@@ -1,7 +1,7 @@
 import React from 'react';
 
 const User = ({ match }) => {
-  const user = match.params.user;
+  const user = match ? match.params.user : null;
   return (
     <section className='user'>
       <h1>Profile</h1>
