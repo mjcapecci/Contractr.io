@@ -1,28 +1,28 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
-import Landing from '../Landing';
-import Search from '../Search';
-import User from '../User';
+import MainSearchBar from '../MainSearchBar';
+import SearchInputGroup from '../SearchInputGroup';
+import SearchInputs from '../SearchInputs';
 
-describe('Landing page', () => {
+describe('MainSearchBar', () => {
   test('renders', () => {
-    const prop = <Landing />;
+    const prop = <MainSearchBar />;
     const wrapper = shallow(prop);
     expect(wrapper.exists()).toBe(true);
   });
 });
 
-describe('Search', () => {
+describe('SearchInputGroup', () => {
   test('renders', () => {
-    const prop = <Search />;
+    const prop = <SearchInputGroup />;
     const wrapper = shallow(prop);
     expect(wrapper.exists()).toBe(true);
   });
 });
 
-describe('User', () => {
+describe('SearchInputs', () => {
   test('renders', () => {
-    const prop = <User />;
+    const prop = <SearchInputs />;
     const wrapper = shallow(prop);
     expect(wrapper.exists()).toBe(true);
   });

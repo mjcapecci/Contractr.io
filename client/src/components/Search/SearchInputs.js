@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SearchInputs = ({ data }) => {
-  return (
+  return data ? (
     <li className='list-group-item text-light bg-dark'>
       <div className='container'>
         <div className='row'>
@@ -26,6 +26,9 @@ const SearchInputs = ({ data }) => {
         </div>
       </div>
     </li>
+  ) : (
+    // TODO: Make Spinner
+    <div>Loading</div>
   );
 };
 
