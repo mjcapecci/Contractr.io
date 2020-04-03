@@ -13,6 +13,7 @@ db.connect(err => {
 
 // Define Routes
 app.use('/api/test', require('./routes/test'));
+app.use('/api/search', require('./routes/search'));
 // app.use('/api/users', require('./routes/users'));
 // app.use('/api/workers', require('./routes/workers'));
 // app.use('/api/comments', require('./routes/comments'));

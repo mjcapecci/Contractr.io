@@ -1,6 +1,24 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { makeSearch } from '../../actions/searchActions';
 
 const MainSearchBar = () => {
+  const search = useSelector(state => state.search);
+  const dispatch = useDispatch();
+
+  const [keyword, setKeyword] = useState('');
+  const [location, setLocation] = useState('');
+
+  const onSubmit = () => {
+    const searchQuery = {
+      keywordField: keyword,
+      locationField: location
+    };
+
+    dispatch(makeSearch(searchQuery));
+  };
+
   return (
     <Fragment>
       <div className='input-group flex main-search'>
@@ -15,6 +33,8 @@ const MainSearchBar = () => {
           placeholder='Skills, Keywords, Etc.'
           aria-label='Skills, Keywords, Etc.'
           aria-describedby='addon-wrapping'
+          value={keyword}
+          onChange={e => setKeyword(e.target.value)}
         />
         <div className='input-group-prepend'>
           <span className='input-group-text rounded-left' id='addon-wrapping'>
@@ -27,14 +47,21 @@ const MainSearchBar = () => {
           placeholder='City and State, Zip Code'
           aria-label='Where are you?'
           aria-describedby='addon-wrapping'
+          value={location}
+          onChange={e => setLocation(e.target.value)}
         />
       </div>
       <div>
-        <p className='lead'>
-          <a className='btn btn-primary btn-lg mt-4' href='#' role='button'>
+        <div>
+          <Link
+            to='/search'
+            className='btn btn-primary btn-lg mt-4'
+            role='button'
+            onClick={() => onSubmit()}
+          >
             Search
-          </a>
-        </p>
+          </Link>
+        </div>
       </div>
     </Fragment>
   );
