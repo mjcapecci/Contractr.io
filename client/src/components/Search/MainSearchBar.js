@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeSearch } from '../../actions/searchActions';
 
 const MainSearchBar = () => {
-  const search = useSelector(state => state.search);
   const dispatch = useDispatch();
 
   const [keyword, setKeyword] = useState('');
@@ -13,7 +12,7 @@ const MainSearchBar = () => {
   const onSubmit = () => {
     const searchQuery = {
       keywordField: keyword,
-      locationField: location
+      locationField: location,
     };
 
     dispatch(makeSearch(searchQuery));
@@ -34,7 +33,7 @@ const MainSearchBar = () => {
           aria-label='Skills, Keywords, Etc.'
           aria-describedby='addon-wrapping'
           value={keyword}
-          onChange={e => setKeyword(e.target.value)}
+          onChange={(e) => setKeyword(e.target.value)}
         />
         <div className='input-group-prepend'>
           <span className='input-group-text rounded-left' id='addon-wrapping'>
@@ -48,7 +47,7 @@ const MainSearchBar = () => {
           aria-label='Where are you?'
           aria-describedby='addon-wrapping'
           value={location}
-          onChange={e => setLocation(e.target.value)}
+          onChange={(e) => setLocation(e.target.value)}
         />
       </div>
       <div>

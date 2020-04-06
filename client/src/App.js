@@ -14,6 +14,8 @@ import Footer from './components/Layout/Footer';
 import Landing from './pages/Landing';
 import Search from './pages/Search';
 import User from './pages/User';
+// TODO: Refactor this into appropriate format
+import LoginForm from './components/Login/LoginForm';
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
             <Switch>
               <Route exact path='/' component={Landing} />
               <Route exact path='/search' component={Search} />
+              <Route exact path='/login' component={LoginForm} />
               <Route exact path='/user/:user' component={User} />
             </Switch>
           </div>

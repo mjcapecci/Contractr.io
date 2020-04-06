@@ -4,7 +4,7 @@ const db = require('./utils/db');
 
 app.use(express.json({ extended: false }));
 
-db.connect(err => {
+db.connect((err) => {
   if (err) {
     throw err;
   }
@@ -12,13 +12,13 @@ db.connect(err => {
 });
 
 // Define Routes
-app.use('/api/test', require('./routes/test'));
+app.use('/api/auth', require('./routes/auth'));
 app.use('/api/search', require('./routes/search'));
 // app.use('/api/users', require('./routes/users'));
 // app.use('/api/workers', require('./routes/workers'));
 // app.use('/api/comments', require('./routes/comments'));
 // app.use('/api/skills', require('./routes/skills'));
-// app.use('/api/auth', require('./routes/auth'));
+
 // --------
 
 const PORT = process.env.PORT || 5000;
