@@ -1,8 +1,19 @@
 const express = require('express');
 const app = express();
 const db = require('./utils/db');
+const passport = require('passport');
+const cookieSession = require('cookie-session');
 
 app.use(express.json({ extended: false }));
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [process.env.COOKIE_KEY],
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 db.connect((err) => {
   if (err) {
@@ -14,7 +25,7 @@ db.connect((err) => {
 // Define Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/search', require('./routes/search'));
-// app.use('/api/users', require('./routes/users'));
+app.use('/api/users', require('./routes/users'));
 // app.use('/api/workers', require('./routes/workers'));
 // app.use('/api/comments', require('./routes/comments'));
 // app.use('/api/skills', require('./routes/skills'));
