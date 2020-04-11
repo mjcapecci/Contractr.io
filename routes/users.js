@@ -7,4 +7,8 @@ router.get('/', auth, (req, res) => {
   res.redirect(301, 'http://localhost:3000');
 });
 
+router.get('/auth', auth, (req, res) => {
+  res.json({ isAuthenticated: true });
+});
+
 module.exports = router;

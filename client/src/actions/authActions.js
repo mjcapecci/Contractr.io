@@ -4,7 +4,7 @@ import { AUTH_STATUS, AUTH_LOADING, AUTH_ERROR } from './types';
 export const getStatus = () => async (dispatch) => {
   dispatch(authLoading());
   try {
-    const res = await axios.get('/users/auth');
+    const res = await axios.get('/api/users/auth');
     dispatch({
       type: AUTH_STATUS,
       payload: res.data,
@@ -17,7 +17,7 @@ export const getStatus = () => async (dispatch) => {
   }
 };
 
-export const userLoading = () => (dispatch) => {
+export const authLoading = () => (dispatch) => {
   dispatch({
     type: AUTH_LOADING,
   });

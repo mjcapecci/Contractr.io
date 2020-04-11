@@ -10,7 +10,6 @@ const LoginForm = () => {
       >
         Login with Google
       </button>
-      <button onClick={() => console.log(document.cookie)}>Test</button>
     </div>
   );
 };
