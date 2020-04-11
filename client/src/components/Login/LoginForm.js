@@ -1,7 +1,5 @@
 import React from 'react';
-import axios from 'axios';
 
-// TODO: Refactor this entire component to run through Redux
 const LoginForm = () => {
   return (
     <div>
@@ -12,6 +10,7 @@ const LoginForm = () => {
       >
         Login with Google
       </button>
+      <button onClick={() => console.log(document.cookie)}>Test</button>
     </div>
   );
 };

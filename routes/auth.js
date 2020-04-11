@@ -3,12 +3,16 @@ const router = express.Router();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const db = require('../utils/db');
+const asyncSQL = require('../utils/asyncSQL');
+
+// TODO: Refactor this into an UPSERT query
+
 passport.serializeUser((user, done) => {
   done(null, user[0].UniqUser);
 });
 
-passport.deserializeUser(async (id, done) => {
-  const user = await selectIdForDeserialize(id);
+passport.deserializeUser(async (UniqId, done) => {
+  const user = await asyncSQL.selectUniqIdForDeserialize(UniqId);
   done(null, user);
 });
 
@@ -41,7 +45,7 @@ passport.use(
         } catch (error) {
           console.error(error.message);
         }
-        const result = await selectUserForCookie(profile.id);
+        const result = await asyncSQL.selectUserForCookie(profile.id);
         done(null, result);
       };
       const updateUser = async () => {
@@ -54,41 +58,13 @@ passport.use(
         } catch (error) {
           console.error(error.message);
         }
-        const result = await selectUserForCookie(profile.id);
+        const result = await asyncSQL.selectUserForCookie(profile.id);
         done(null, result);
       };
       checkForUser(profile.id);
     }
   )
 );
-
-function selectUserForCookie(id) {
-  return new Promise((resolve) => {
-    const sql = `SELECT * FROM user WHERE VendorID = ${id}`;
-    try {
-      db.query(sql, (err, result) => {
-        if (err) throw err;
-        resolve(result);
-      });
-    } catch (error) {
-      resolve(error.message);
-    }
-  });
-}
-
-function selectIdForDeserialize(user) {
-  return new Promise((resolve) => {
-    const sql = `SELECT * FROM user WHERE UniqUser = ${user}`;
-    try {
-      db.query(sql, (err, result) => {
-        if (err) throw err;
-        resolve(result);
-      });
-    } catch (error) {
-      resolve(error.message);
-    }
-  });
-}
 
 router.get(
   '/google',

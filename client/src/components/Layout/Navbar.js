@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './layout.scss';
 
-const Navbar = props => {
+const Navbar = (props) => {
   const path = useLocation().pathname;
 
   const [activeLink, setActiveLink] = useState(path);
@@ -42,6 +42,13 @@ const Navbar = props => {
             Login
           </Link>
         </li>
+        <Link
+          className={activeLink !== '/profile' ? 'nav-link' : 'nav-link active'}
+          to='/profile'
+          onClick={() => setActiveLink('/profile')}
+        >
+          <li className='nav-item'>Profile</li>
+        </Link>
       </ul>
     </nav>
   );

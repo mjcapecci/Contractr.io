@@ -3,6 +3,7 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Landing from '../Landing';
 import Search from '../Search';
 import User from '../User';
+import Login from '../Login';
 
 describe('Landing page', () => {
   test('renders', () => {
@@ -23,6 +24,14 @@ describe('Search', () => {
 describe('User', () => {
   test('renders', () => {
     const prop = <User />;
+    const wrapper = shallow(prop);
+    expect(wrapper.exists()).toBe(true);
+  });
+});
+
+describe('Login', () => {
+  test('renders', () => {
+    const prop = <Login />;
     const wrapper = shallow(prop);
     expect(wrapper.exists()).toBe(true);
   });
