@@ -28,4 +28,22 @@ function selectUniqIdForDeserialize(user) {
   });
 }
 
-module.exports = { selectUserForCookie, selectUniqIdForDeserialize };
+function checkForWorker(id) {
+  return new Promise((resolve) => {
+    const sql = `SELECT * FROM worker WHERE UniqUser = ${id}`;
+    try {
+      db.query(sql, (err, result) => {
+        if (err) throw err;
+        resolve(result);
+      });
+    } catch (error) {
+      resolve(error.message);
+    }
+  });
+}
+
+module.exports = {
+  selectUserForCookie,
+  selectUniqIdForDeserialize,
+  checkForWorker,
+};

@@ -1,12 +1,17 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
 import MainSearchBar from '../MainSearchBar';
 import SearchInputGroup from '../SearchInputGroup';
 import SearchInputs from '../SearchInputs';
 
 describe('MainSearchBar', () => {
   test('renders', () => {
-    const prop = <MainSearchBar />;
+    const prop = (
+      <MemoryRouter>
+        <MainSearchBar />
+      </MemoryRouter>
+    );
     const wrapper = shallow(prop);
     expect(wrapper.exists()).toBe(true);
   });

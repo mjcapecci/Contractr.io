@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import PersonalProfile from '../components/Profile/PersonalProfile';
+import PersonalWorker from '../components/Profile/PersonalWorker';
 
 const Profile = () => {
-  return <div>This is the profile page</div>;
+  return (
+    <>
+      <PersonalProfile></PersonalProfile>
+      <PersonalWorker></PersonalWorker>
+    </>
+  );
 };
 
 export default Profile;

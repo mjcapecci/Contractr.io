@@ -1,31 +1,30 @@
 import {
-  GET_PROFILE,
-  GET_USER,
-  GET_USERS,
-  USER_LOADING,
-  USER_ERROR,
+  GET_WORKER,
+  UPDATE_WORKER,
+  WORKER_ERROR,
+  WORKER_LOADING,
 } from '../actions/types';
 
 const initialState = {
-  user: {},
+  currentWorker: {},
   loading: false,
   error: null,
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_USER:
+    case GET_WORKER:
       return {
         ...state,
-        user: action.payload,
+        currentWorker: action.payload,
         loading: false,
       };
-    case USER_LOADING:
+    case WORKER_LOADING:
       return {
         ...state,
         loading: true,
       };
-    case USER_ERROR:
+    case WORKER_ERROR:
       return {
         ...state,
         error: action.payload,

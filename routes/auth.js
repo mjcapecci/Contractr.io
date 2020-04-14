@@ -36,7 +36,8 @@ passport.use(
         }
       }
       const addUser = async () => {
-        const sql = `INSERT INTO user (NameOf, VendorId, VendorName) VALUES ('${profile.displayName}','${profile.id}', 'Google')`; // insert if not exists
+        console.log(profile);
+        const sql = `INSERT INTO user (NameOf, VendorId, VendorName, Email, Photo) VALUES ('${profile.displayName}','${profile.id}', 'Google', '${profile.emails[0].value}', '${profile.photos[0].value}')`; // insert if not exists
         try {
           db.query(sql, (err, result) => {
             if (err) throw err;

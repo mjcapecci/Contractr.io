@@ -11,4 +11,16 @@ router.get('/auth', auth, (req, res) => {
   res.json({ isAuthenticated: true });
 });
 
+router.get('/profile', auth, (req, res) => {
+  const user = req.user[0];
+  res
+    .status(200)
+    .json({
+      name: user.NameOf,
+      email: user.Email,
+      registrationDate: user.RegistrationDate,
+      vendorName: user.VendorName,
+    });
+});
+
 module.exports = router;
