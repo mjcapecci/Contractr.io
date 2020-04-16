@@ -1,0 +1,46 @@
+hr {
+  background: white;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.registration-form-controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-button {
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  transition: background 0.1s;
+
+  &:first-child {
+    background: darkgreen;
+    &:hover {
+      background: darken(darkgreen, 10%);
+    }
+  }
+
+  &:last-child {
+    background: darkred;
+    &:hover {
+      background: darken(darkred, 10%);
+    }
+  }
+}
+
+.userInfo {
+  img {
+    border-radius: 5px;
+  }
+}
+
+.workerInfo {
+  white-space: pre;
+}

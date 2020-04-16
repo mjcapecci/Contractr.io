@@ -6,7 +6,8 @@ export const GET_USER = 'GET_USER';
 export const USER_LOADING = 'USER_LOADING';
 export const USER_ERROR = 'USER_ERROR';
 
-export const GET_WORKER = 'USER_ERROR';
+export const GET_WORKER = 'GET_WORKER';
+export const ADD_WORKER = 'ADD_WORKER';
 export const UPDATE_WORKER = 'UPDATE_WORKER';
 export const WORKER_LOADING = 'WORKER_LOADING';
 export const WORKER_ERROR = 'WORKER_ERROR';

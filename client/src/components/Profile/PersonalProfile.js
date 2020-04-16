@@ -1,25 +1,23 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProfile } from '../../actions/userActions';
-import { getWorker } from '../../actions/workerActions';
 
 const PersonalProfile = () => {
   const user = useSelector((state) => state.user.user);
-  let isWorker = useSelector((state) => state.worker.worker);
+  let isWorker = useSelector((state) => state.worker.currentWorker);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getProfile());
-    dispatch(getWorker());
-  }, []);
-
   return (
-    <div>
-      <h1>Username: {user.name}</h1>
+    <div className='userInfo'>
+      <img
+        src={user.photo}
+        alt={user.name + "'s profile picture."}
+        height='150px'
+      />
+      <h1>{user.name}</h1>
       <img src='' alt='' />
       <p>Email: {user.email}</p>
-      <p>Account Type: {!isWorker ? 'Help Seeker' : 'Contractor'}</p>
+      <p>Account Type: {!isWorker.length > 0 ? 'Help Seeker' : 'Contractor'}</p>
       <p>
         Member Since: {moment(user.registrationDate).format('MMMM Do, YYYY')}
       </p>

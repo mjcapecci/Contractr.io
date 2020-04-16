@@ -13,14 +13,13 @@ router.get('/auth', auth, (req, res) => {
 
 router.get('/profile', auth, (req, res) => {
   const user = req.user[0];
-  res
-    .status(200)
-    .json({
-      name: user.NameOf,
-      email: user.Email,
-      registrationDate: user.RegistrationDate,
-      vendorName: user.VendorName,
-    });
+  res.status(200).json({
+    name: user.NameOf,
+    email: user.Email,
+    photo: user.Photo,
+    registrationDate: user.RegistrationDate,
+    vendorName: user.VendorName,
+  });
 });
 
 module.exports = router;

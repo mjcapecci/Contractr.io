@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getStatus } from '../../actions/authActions';
+import { getProfile } from '../../actions/userActions';
 import { Link, useLocation } from 'react-router-dom';
 import './layout.scss';
 
@@ -12,6 +13,7 @@ const Navbar = (props) => {
 
   useEffect(() => {
     dispatch(getStatus());
+    dispatch(getProfile());
   }, [authState]);
 
   const guestLinks = (
