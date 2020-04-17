@@ -1,6 +1,7 @@
 import {
   GET_WORKER,
   ADD_WORKER,
+  CHECK_WORKER_USERNAME,
   UPDATE_WORKER,
   WORKER_ERROR,
   WORKER_LOADING,
@@ -8,6 +9,7 @@ import {
 
 const initialState = {
   currentWorker: [],
+  newWorkerExists: null,
   loading: false,
   error: null,
 };
@@ -30,6 +32,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         currentWorker: action.payload,
+        loading: false,
+      };
+    case CHECK_WORKER_USERNAME:
+      return {
+        ...state,
+        newWorkerExists: action.payload,
         loading: false,
       };
     case WORKER_LOADING:

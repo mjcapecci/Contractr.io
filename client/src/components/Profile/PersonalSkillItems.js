@@ -24,20 +24,21 @@ const PersonalSkillItems = ({ data }) => {
             <input
               type='text'
               value={skillValue}
+              placeholder='Update skill...'
               onChange={(e) => setSkillValue(e.target.value)}
             />
+            <motion.button onClick={() => setToggle(!isToggled)}>
+              <i className='far fa-check-circle green'></i>
+            </motion.button>
+            <motion.button
+              onClick={() => {
+                setToggle(!isToggled);
+                setSkillValue(data.Name);
+              }}
+            >
+              <i className='far fa-times-circle red'></i>
+            </motion.button>
           </motion.div>
-          <motion.button onClick={() => setToggle(!isToggled)}>
-            <i className='far fa-check-circle green'></i>
-          </motion.button>
-          <motion.button
-            onClick={() => {
-              setToggle(!isToggled);
-              setSkillValue(data.Name);
-            }}
-          >
-            <i className='far fa-times-circle red'></i>
-          </motion.button>
         </>
       )}
     </div>

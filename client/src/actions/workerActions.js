@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   GET_WORKER,
   ADD_WORKER,
+  CHECK_WORKER_USERNAME,
   UPDATE_WORKER,
   WORKER_LOADING,
   WORKER_ERROR,
@@ -39,7 +40,7 @@ export const addWorker = (newWorkerInfo) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: WORKER_ERROR,
-      payload: error.response.statusText,
+      payload: error.response.data,
     });
   }
 };
@@ -55,6 +56,27 @@ export const updateWorker = (updatedWorkerInfo) => async (dispatch) => {
     const res = await axios.put('/api/workers', updatedWorkerInfo, config);
     dispatch({
       type: UPDATE_WORKER,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: WORKER_ERROR,
+      payload: error.response.statusText,
+    });
+  }
+};
+
+export const checkWorkerUsername = (username) => async (dispatch) => {
+  dispatch(workerLoading());
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  try {
+    const res = await axios.post('/api/workers/username', username, config);
+    dispatch({
+      type: CHECK_WORKER_USERNAME,
       payload: res.data,
     });
   } catch (error) {

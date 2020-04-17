@@ -54,22 +54,35 @@ hr {
 }
 
 .skillsInfo {
+  button {
+    color: white;
+    background: none;
+    user-select: none;
+    outline: none;
+  }
   .skills {
     min-height: 3rem;
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
 
-    button {
-      color: white;
-      background: none;
-      user-select: none;
-      outline: none;
-    }
-
     .skillName {
       margin-right: 1rem;
-      transform: translateY(9px);
+      transform: translateY(7px);
     }
   }
+
+  .addInput {
+    display: flex;
+    color: red;
+    margin-bottom: 1rem;
+  }
+
+  .addLogic {
+    height: 1.62rem;
+  }
+}
+
+.error {
+  background: #ffb5b0;
 }

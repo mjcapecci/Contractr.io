@@ -8,6 +8,7 @@ export const USER_ERROR = 'USER_ERROR';
 
 export const GET_WORKER = 'GET_WORKER';
 export const ADD_WORKER = 'ADD_WORKER';
+export const CHECK_WORKER_USERNAME = 'CHECK_WORKER_USERNAME';
 export const UPDATE_WORKER = 'UPDATE_WORKER';
 export const WORKER_LOADING = 'WORKER_LOADING';
 export const WORKER_ERROR = 'WORKER_ERROR';

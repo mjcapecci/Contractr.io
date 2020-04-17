@@ -24,4 +24,14 @@ router.put('/', auth, async (req, res) => {
   res.send(worker);
 });
 
+router.post('/username', auth, async (req, res) => {
+  const username = req.body.username;
+  const userExists = await asyncSQL.checkForUsername(username);
+  if (userExists.length > 0) {
+    res.send(true);
+  } else {
+    res.send(false);
+  }
+});
+
 module.exports = router;

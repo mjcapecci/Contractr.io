@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getWorker } from '../../actions/workerActions';
+import { getWorker, checkWorkerUsername } from '../../actions/workerActions';
 import RegistrationModal from './RegistrationModal';
 import './profile.scss';
 
 const PersonalWorker = () => {
   const worker = useSelector((state) => state.worker);
+  const newWorkerExists = useSelector((state) => state.worker.newWorkerExists);
+
   const dispatch = useDispatch();
   const [isToggled, setToggle] = useState(false);
 
+  const [username, setUsername] = useState('');
   const [bio, setBio] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [website, setWebsite] = useState('');
@@ -16,6 +19,7 @@ const PersonalWorker = () => {
   const [displayLocation, setDisplayLocation] = useState('');
 
   const formControls = {
+    setUsername,
     setBio,
     setContactEmail,
     setWebsite,
@@ -24,6 +28,7 @@ const PersonalWorker = () => {
   };
 
   const changeInfo = {
+    username,
     bio,
     contactEmail,
     website,
@@ -32,6 +37,7 @@ const PersonalWorker = () => {
   };
 
   const loadEditInfo = () => {
+    setUsername(worker.currentWorker[0].Username);
     setBio(worker.currentWorker[0].Bio);
     setContactEmail(worker.currentWorker[0].ContactEmail);
     setWebsite(worker.currentWorker[0].WebsiteLink);
@@ -59,7 +65,26 @@ const PersonalWorker = () => {
         changeInfo={changeInfo}
         modalType='Submit'
       >
-        <form action='' className='registration-form'>
+        <form action='' className='registration-form' autoComplete='off'>
+          <label htmlFor='username'>
+            Username:{' '}
+            {newWorkerExists && (
+              <small className='red'>*that username is unavailable</small>
+            )}
+          </label>
+          <input
+            className={
+              !newWorkerExists ? 'usernameInput' : 'usernameInput error'
+            }
+            name='username'
+            type='text'
+            placeholder='Your username...'
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+              dispatch(checkWorkerUsername({ username: e.target.value }));
+            }}
+          />
           <label htmlFor='bio'>Bio:</label>
           <textarea
             name='bio'
@@ -76,6 +101,7 @@ const PersonalWorker = () => {
             type='text'
             placeholder='Your contact email...'
             value={contactEmail}
+            autoComplete='off'
             onChange={(e) => setContactEmail(e.target.value)}
           />
           <label htmlFor='website'>Website:</label>
@@ -99,6 +125,7 @@ const PersonalWorker = () => {
             name='location'
             type='text'
             value={location}
+            autoComplete='off'
             placeholder='Your private zip code...'
             onChange={(e) => setLocation(e.target.value)}
           />
@@ -109,6 +136,8 @@ const PersonalWorker = () => {
     <>
       <div className='workerInfo'>
         <h2>Worker Info</h2>
+        <h5>Username:</h5>
+        <p>{worker.currentWorker[0].Username}</p>
         <h5>Bio:</h5>
         <p>{worker.currentWorker[0].Bio}</p>
         <h5>Contact Email:</h5>
@@ -145,7 +174,7 @@ const PersonalWorker = () => {
         changeInfo={changeInfo}
         modalType='Update'
       >
-        <form action='' className='registration-form'>
+        <form action='' className='registration-form' autoComplete='off'>
           <label htmlFor='bio'>Bio:</label>
           <textarea
             name='bio'
@@ -162,6 +191,7 @@ const PersonalWorker = () => {
             type='text'
             placeholder='Your contact email...'
             value={contactEmail}
+            autoComplete='off'
             onChange={(e) => setContactEmail(e.target.value)}
           />
           <label htmlFor='website'>Website:</label>
@@ -185,6 +215,7 @@ const PersonalWorker = () => {
             name='location'
             type='text'
             value={location}
+            autoComplete='off'
             placeholder='Your private zip code...'
             onChange={(e) => setLocation(e.target.value)}
           />

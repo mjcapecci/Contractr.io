@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import { addWorker, updateWorker } from '../../actions/workerActions';
 import './profile.scss';
@@ -12,19 +12,39 @@ const RegistrationModal = ({
   modalType,
   children,
 }) => {
-  const { bio, contactEmail, website, location, displayLocation } = changeInfo;
+  const {
+    bio,
+    contactEmail,
+    website,
+    location,
+    displayLocation,
+    username,
+  } = changeInfo;
 
+  const newWorkerExists = useSelector((state) => state.worker.newWorkerExists);
   const dispatch = useDispatch();
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const newWorkerInfo = {
+      username,
       bio,
       contactEmail,
       website,
       location,
       displayLocation,
     };
-    dispatch(addWorker(newWorkerInfo));
+    if (newWorkerExists) {
+      return;
+    } else {
+      dispatch(addWorker(newWorkerInfo));
+      setToggle(false);
+      formControls.setUsername('');
+      formControls.setBio('');
+      formControls.setContactEmail('');
+      formControls.setWebsite('');
+      formControls.setLocation('');
+      formControls.setDisplayLocation('');
+    }
   };
 
   const onUpdate = () => {
@@ -65,12 +85,6 @@ const RegistrationModal = ({
                   className='form-button'
                   onClick={() => {
                     modalType === 'Update' ? onUpdate() : onSubmit();
-                    setToggle(false);
-                    formControls.setBio('');
-                    formControls.setContactEmail('');
-                    formControls.setWebsite('');
-                    formControls.setLocation('');
-                    formControls.setDisplayLocation('');
                   }}
                 >
                   {modalType}
@@ -79,6 +93,7 @@ const RegistrationModal = ({
                   className='form-button'
                   onClick={() => {
                     setToggle(false);
+                    formControls.setUsername('');
                     formControls.setBio('');
                     formControls.setContactEmail('');
                     formControls.setWebsite('');

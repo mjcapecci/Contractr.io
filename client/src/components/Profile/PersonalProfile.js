@@ -15,7 +15,6 @@ const PersonalProfile = () => {
         height='150px'
       />
       <h1>{user.name}</h1>
-      <img src='' alt='' />
       <p>Email: {user.email}</p>
       <p>Account Type: {!isWorker.length > 0 ? 'Help Seeker' : 'Contractor'}</p>
       <p>
