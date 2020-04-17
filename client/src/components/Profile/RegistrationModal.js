@@ -12,13 +12,14 @@ const RegistrationModal = ({
   modalType,
   children,
 }) => {
-  const { bio, website, location, displayLocation } = changeInfo;
+  const { bio, contactEmail, website, location, displayLocation } = changeInfo;
 
   const dispatch = useDispatch();
 
   const onSubmit = () => {
     const newWorkerInfo = {
       bio,
+      contactEmail,
       website,
       location,
       displayLocation,
@@ -29,6 +30,7 @@ const RegistrationModal = ({
   const onUpdate = () => {
     const updatedWorkerInfo = {
       bio,
+      contactEmail,
       website,
       location,
       displayLocation,
@@ -62,11 +64,13 @@ const RegistrationModal = ({
                 <button
                   className='form-button'
                   onClick={() => {
-                    modalType = 'Update' ? onUpdate() : onSubmit();
+                    modalType === 'Update' ? onUpdate() : onSubmit();
                     setToggle(false);
                     formControls.setBio('');
+                    formControls.setContactEmail('');
                     formControls.setWebsite('');
                     formControls.setLocation('');
+                    formControls.setDisplayLocation('');
                   }}
                 >
                   {modalType}
@@ -76,8 +80,10 @@ const RegistrationModal = ({
                   onClick={() => {
                     setToggle(false);
                     formControls.setBio('');
+                    formControls.setContactEmail('');
                     formControls.setWebsite('');
                     formControls.setLocation('');
+                    formControls.setDisplayLocation('');
                   }}
                 >
                   Cancel

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getWorker } from '../../actions/workerActions';
 import RegistrationModal from './RegistrationModal';
@@ -10,12 +10,14 @@ const PersonalWorker = () => {
   const [isToggled, setToggle] = useState(false);
 
   const [bio, setBio] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
   const [website, setWebsite] = useState('');
   const [location, setLocation] = useState('');
   const [displayLocation, setDisplayLocation] = useState('');
 
   const formControls = {
     setBio,
+    setContactEmail,
     setWebsite,
     setLocation,
     setDisplayLocation,
@@ -23,6 +25,7 @@ const PersonalWorker = () => {
 
   const changeInfo = {
     bio,
+    contactEmail,
     website,
     location,
     displayLocation,
@@ -30,6 +33,7 @@ const PersonalWorker = () => {
 
   const loadEditInfo = () => {
     setBio(worker.currentWorker[0].Bio);
+    setContactEmail(worker.currentWorker[0].ContactEmail);
     setWebsite(worker.currentWorker[0].WebsiteLink);
     setLocation(worker.currentWorker[0].Location);
     setDisplayLocation(worker.currentWorker[0].DisplayLocation);
@@ -66,6 +70,14 @@ const PersonalWorker = () => {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
           ></textarea>
+          <label htmlFor='contactEmail'>Contact Email:</label>
+          <input
+            name='contactEmail'
+            type='text'
+            placeholder='Your contact email...'
+            value={contactEmail}
+            onChange={(e) => setContactEmail(e.target.value)}
+          />
           <label htmlFor='website'>Website:</label>
           <input
             name='website'
@@ -99,6 +111,8 @@ const PersonalWorker = () => {
         <h2>Worker Info</h2>
         <h5>Bio:</h5>
         <p>{worker.currentWorker[0].Bio}</p>
+        <h5>Contact Email:</h5>
+        <p>{worker.currentWorker[0].ContactEmail}</p>
         <h5>Website Link:</h5>
         <p>
           <a
@@ -142,6 +156,14 @@ const PersonalWorker = () => {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
           ></textarea>
+          <label htmlFor='contactEmail'>Contact Email:</label>
+          <input
+            name='contactEmail'
+            type='text'
+            placeholder='Your contact email...'
+            value={contactEmail}
+            onChange={(e) => setContactEmail(e.target.value)}
+          />
           <label htmlFor='website'>Website:</label>
           <input
             name='website'

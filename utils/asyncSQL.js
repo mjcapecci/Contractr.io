@@ -44,7 +44,7 @@ function checkForWorker(id) {
 
 function addWorker(user, workerInfo) {
   return new Promise((resolve) => {
-    const sql = `INSERT INTO worker (UniqUser, Bio, WebsiteLink, Location, DisplayLocation) VALUES (${user}, '${workerInfo.bio}', '${workerInfo.website}', '${workerInfo.location}', '${workerInfo.displayLocation}')`;
+    const sql = `INSERT INTO worker (UniqUser, Bio, WebsiteLink, Location, DisplayLocation, ContactEmail) VALUES (${user}, '${workerInfo.bio}', '${workerInfo.website}', '${workerInfo.location}', '${workerInfo.displayLocation}', '${workerInfo.contactEmail}')`;
     try {
       db.query(sql, (err, result) => {
         if (err) throw err;
@@ -58,7 +58,7 @@ function addWorker(user, workerInfo) {
 
 function updateWorker(user, workerInfo) {
   return new Promise((resolve) => {
-    const sql = `UPDATE worker SET Bio = '${workerInfo.bio}', WebsiteLink = '${workerInfo.website}', Location = '${workerInfo.location}', DisplayLocation = '${workerInfo.displayLocation}' WHERE UniqUser = ${user};`;
+    const sql = `UPDATE worker SET Bio = '${workerInfo.bio}', ContactEmail = '${workerInfo.contactEmail}', WebsiteLink = '${workerInfo.website}', Location = '${workerInfo.location}', DisplayLocation = '${workerInfo.displayLocation}' WHERE UniqUser = ${user};`;
     try {
       db.query(sql, (err, result) => {
         if (err) throw err;

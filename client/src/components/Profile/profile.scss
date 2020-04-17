@@ -2,6 +2,14 @@ hr {
   background: white;
 }
 
+.green {
+  color: darkgreen;
+}
+
+.red {
+  color: darkred;
+}
+
 .registration-form {
   display: flex;
   flex-direction: column;
@@ -43,4 +51,25 @@ hr {
 
 .workerInfo {
   white-space: pre;
+}
+
+.skillsInfo {
+  .skills {
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    button {
+      color: white;
+      background: none;
+      user-select: none;
+      outline: none;
+    }
+
+    .skillName {
+      margin-right: 1rem;
+      transform: translateY(9px);
+    }
+  }
 }
