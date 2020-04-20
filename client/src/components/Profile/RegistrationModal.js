@@ -56,6 +56,7 @@ const RegistrationModal = ({
       displayLocation,
     };
     dispatch(updateWorker(updatedWorkerInfo));
+    setToggle(false);
   };
 
   return (

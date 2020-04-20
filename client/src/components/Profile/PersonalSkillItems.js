@@ -5,14 +5,14 @@ import { motion } from 'framer-motion';
 
 const PersonalSkillItems = ({ data }) => {
   const [isToggled, setToggle] = useState(false);
-  const [skillValue, setSkillValue] = useState(data.Name);
+  const [skillValue, setSkillValue] = useState(data.NameOf);
 
   return (
     <div className={'skill' + data.UniqSkill + ' skills'}>
       {!isToggled ? (
         <>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, x: 0 }}>
-            <p className='skillName'>{data.Name}</p>
+            <p className='skillName'>{data.NameOf}</p>
           </motion.div>
           <motion.button onClick={() => setToggle(!isToggled)}>
             <i className='far fa-edit'></i>
@@ -33,7 +33,7 @@ const PersonalSkillItems = ({ data }) => {
             <motion.button
               onClick={() => {
                 setToggle(!isToggled);
-                setSkillValue(data.Name);
+                setSkillValue(data.NameOf);
               }}
             >
               <i className='far fa-times-circle red'></i>

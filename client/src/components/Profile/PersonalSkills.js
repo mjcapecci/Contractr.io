@@ -1,25 +1,50 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getMySkills, addSkill } from '../../actions/skillActions';
 import PersonalSkillItems from './PersonalSkillItems';
 import { motion } from 'framer-motion';
-
-// This component will contain the Get request for all of the worker's skills.
-// It will also contain the "Add Skill" request, and prevent users from having over 5 skills.
+import Preloader from '../Layout/Preloader';
 
 const PersonalSkills = () => {
   const worker = useSelector((state) => state.worker);
-  const [isToggled, setToggle] = useState(false);
-  const sampleSkillsArr = [
-    { UniqSkill: 45, Name: 'Carpentry' },
-    { UniqSkill: 36, Name: 'Plumbing' },
-  ];
+  const skills = useSelector((state) => state.skill.skills);
+  const dispatch = useDispatch();
 
-  return (
+  const [isToggled, setToggle] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [newSkill, setNewSkill] = useState('');
+
+  const onAddSkill = () => {
+    dispatch(addSkill(newSkill));
+    setLoading(true);
+  };
+
+  useEffect(() => {
+    if (worker.currentWorker.length > 0) {
+      dispatch(getMySkills(worker.currentWorker[0].UniqWorker));
+    }
+  }, [worker, skills.length]);
+
+  useEffect(() => {
+    if (skills.length === 0) {
+      if (worker.currentWorker.length > 0)
+        dispatch(getMySkills(worker.currentWorker[0].UniqWorker));
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    } else {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    }
+  }, [loading]);
+
+  return !loading ? (
     worker.currentWorker.length > 0 && (
       <div className='skillsInfo'>
         <h3>My Skills</h3>
-        {sampleSkillsArr.map((skillData) => (
-          <PersonalSkillItems data={skillData} key={skillData.UniqSkill} />
+        {skills.map((skill) => (
+          <PersonalSkillItems data={skill} key={skill.UniqSkill} />
         ))}
         {isToggled ? (
           <div className='addLogic'>
@@ -28,8 +53,18 @@ const PersonalSkills = () => {
               animate={{ opacity: 1, x: -5 }}
               className='addInput'
             >
-              <input type='text' placeholder='Add skill...' />
-              <motion.button onClick={() => setToggle(!isToggled)}>
+              <input
+                type='text'
+                placeholder='Add skill...'
+                value={newSkill}
+                onChange={(e) => setNewSkill(e.target.value)}
+              />
+              <motion.button
+                onClick={() => {
+                  setToggle(!isToggled);
+                  onAddSkill();
+                }}
+              >
                 <i className='far fa-check-circle green'></i>
               </motion.button>
               <motion.button
@@ -53,6 +88,11 @@ const PersonalSkills = () => {
         <hr />
       </div>
     )
+  ) : (
+    <>
+      <h3>My Skills</h3>
+      <Preloader />
+    </>
   );
 };
 

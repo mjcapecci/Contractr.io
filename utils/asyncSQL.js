@@ -72,7 +72,51 @@ function addWorker(user, workerInfo) {
 
 function updateWorker(user, workerInfo) {
   return new Promise((resolve) => {
-    const sql = `UPDATE worker SET Username = '${workerInfo.username}', Bio = '${workerInfo.bio}', ContactEmail = '${workerInfo.contactEmail}', WebsiteLink = '${workerInfo.website}', Location = '${workerInfo.location}', DisplayLocation = '${workerInfo.displayLocation}' WHERE UniqUser = ${user};`;
+    const sql = `UPDATE worker SET Bio = '${workerInfo.bio}', ContactEmail = '${workerInfo.contactEmail}', WebsiteLink = '${workerInfo.website}', Location = '${workerInfo.location}', DisplayLocation = '${workerInfo.displayLocation}' WHERE UniqUser = ${user};`;
+    try {
+      db.query(sql, (err, result) => {
+        if (err) throw err;
+        resolve(result);
+      });
+    } catch (error) {
+      resolve(error.message);
+    }
+  });
+}
+
+function checkForSkill(skill) {
+  return new Promise((resolve) => {
+    const sql = `SELECT * FROM skill WHERE NameOf = '${skill}'`;
+    try {
+      db.query(sql, (err, result) => {
+        if (err) throw err;
+        resolve(result);
+      });
+    } catch (error) {
+      resolve(error.message);
+    }
+  });
+}
+
+function addSkillToPool(skill) {
+  return new Promise((resolve) => {
+    const sql = `INSERT INTO skill (NameOf) VALUES ('${skill}')`;
+    try {
+      db.query(sql, (err, result) => {
+        if (err) throw err;
+        resolve(result);
+      });
+    } catch (error) {
+      resolve(error.message);
+    }
+  });
+}
+
+function addWorkerSkill(user, skill) {
+  return new Promise((resolve) => {
+    const sql = `INSERT INTO workerskilljt(UniqWorker, UniqSkill) SELECT
+    (SELECT UniqWorker FROM worker WHERE UniqUser = ${user}), skill.UniqSkill
+     FROM skill WHERE skill.NameOf = '${skill}';`;
     try {
       db.query(sql, (err, result) => {
         if (err) throw err;
@@ -91,4 +135,7 @@ module.exports = {
   checkForUsername,
   addWorker,
   updateWorker,
+  checkForSkill,
+  addSkillToPool,
+  addWorkerSkill,
 };
