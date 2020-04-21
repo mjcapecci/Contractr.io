@@ -1,5 +1,6 @@
 import {
   MAKE_SEARCH,
+  GET_SEARCH_RESULTS,
   CLEAR_SEARCH,
   SEARCH_ERROR,
   SEARCH_LOADING,
@@ -7,6 +8,7 @@ import {
 
 const initialState = {
   search: null,
+  results: [],
   loading: false,
   error: null,
 };
@@ -17,6 +19,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         search: action.payload,
+        loading: false,
+      };
+    case GET_SEARCH_RESULTS:
+      return {
+        ...state,
+        results: action.payload[1],
         loading: false,
       };
     case SEARCH_LOADING:

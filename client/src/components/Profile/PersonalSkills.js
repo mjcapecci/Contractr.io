@@ -31,11 +31,11 @@ const PersonalSkills = () => {
         dispatch(getMySkills(worker.currentWorker[0].UniqWorker));
       setTimeout(() => {
         setLoading(false);
-      }, 2000);
+      }, 1000);
     } else {
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 500);
     }
   }, [loading]);
 
@@ -82,7 +82,7 @@ const PersonalSkills = () => {
             animate={{ opacity: 1, x: -5 }}
             onClick={() => setToggle(!isToggled)}
           >
-            <i class='far fa-plus-square'></i>
+            <i className='far fa-plus-square'></i>
           </motion.button>
         )}
         <hr />

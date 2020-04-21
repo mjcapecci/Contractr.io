@@ -86,3 +86,11 @@ hr {
 .error {
   background: #ffb5b0;
 }
+
+i {
+  transition: opacity 0.1s;
+}
+
+.disabled {
+  opacity: 0.2;
+}

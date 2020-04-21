@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { deleteMySkill } from '../../actions/skillActions';
 
 // This components will contain the update and delete request for particular skills
 
 const PersonalSkillItems = ({ data }) => {
   const [isToggled, setToggle] = useState(false);
   const [skillValue, setSkillValue] = useState(data.NameOf);
+  const [initialSkillValue, setInitialSkillValue] = useState('');
+  const dispatch = useDispatch();
 
   return (
     <div className={'skill' + data.UniqSkill + ' skills'}>
@@ -14,7 +18,12 @@ const PersonalSkillItems = ({ data }) => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, x: 0 }}>
             <p className='skillName'>{data.NameOf}</p>
           </motion.div>
-          <motion.button onClick={() => setToggle(!isToggled)}>
+          <motion.button
+            onClick={() => {
+              setToggle(!isToggled);
+              setInitialSkillValue(skillValue);
+            }}
+          >
             <i className='far fa-edit'></i>
           </motion.button>
         </>
@@ -31,12 +40,17 @@ const PersonalSkillItems = ({ data }) => {
               <i className='far fa-check-circle green'></i>
             </motion.button>
             <motion.button
+              disabled={skillValue === initialSkillValue ? false : true}
               onClick={() => {
                 setToggle(!isToggled);
-                setSkillValue(data.NameOf);
+                dispatch(deleteMySkill(data.UniqSkill));
               }}
             >
-              <i className='far fa-times-circle red'></i>
+              <i
+                className={`far fa-times-circle red ${
+                  skillValue !== initialSkillValue ? 'disabled' : ''
+                }`}
+              ></i>
             </motion.button>
           </motion.div>
         </>

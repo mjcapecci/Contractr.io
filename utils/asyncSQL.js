@@ -128,6 +128,23 @@ function addWorkerSkill(user, skill) {
   });
 }
 
+function deleteSkillFromWorker(user, skill) {
+  return new Promise((resolve) => {
+    let sql = `
+    DELETE FROM workerskilljt
+    WHERE UniqWorker = (SELECT UniqWorker FROM worker WHERE UniqUser = ${user}) && UniqSkill = ${skill}
+    `;
+    try {
+      db.query(sql, (err, result) => {
+        if (err) throw err;
+        resolve(result);
+      });
+    } catch (error) {
+      resolve(error.message);
+    }
+  });
+}
+
 module.exports = {
   selectUserForCookie,
   selectUniqIdForDeserialize,
@@ -138,4 +155,5 @@ module.exports = {
   checkForSkill,
   addSkillToPool,
   addWorkerSkill,
+  deleteSkillFromWorker,
 };

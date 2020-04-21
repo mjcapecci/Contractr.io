@@ -1,13 +1,13 @@
 import React from 'react';
 import moment from 'moment';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import Preloader from '../Layout/Preloader';
 
 const PersonalProfile = () => {
   const user = useSelector((state) => state.user.user);
+  const loading = useSelector((state) => state.user.loading);
   let isWorker = useSelector((state) => state.worker.currentWorker);
-  const dispatch = useDispatch();
-
-  return (
+  return !loading ? (
     <div className='userInfo'>
       <img
         src={user.photo}
@@ -21,7 +21,10 @@ const PersonalProfile = () => {
         Member Since: {moment(user.registrationDate).format('MMMM Do, YYYY')}
       </p>
       <p>Registered With: {user.vendorName}</p>
+      <hr />
     </div>
+  ) : (
+    <Preloader />
   );
 };
 

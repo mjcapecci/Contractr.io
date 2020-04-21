@@ -1,6 +1,7 @@
 import {
   GET_MY_SKILLS,
   ADD_SKILL,
+  DELETE_MY_SKILL,
   SKILL_LOADING,
   SKILL_ERROR,
 } from '../actions/types';
@@ -20,6 +21,12 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case ADD_SKILL:
+      return {
+        ...state,
+        skills: action.payload,
+        loading: false,
+      };
+    case DELETE_MY_SKILL:
       return {
         ...state,
         skills: action.payload,
