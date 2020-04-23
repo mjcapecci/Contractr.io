@@ -16,13 +16,16 @@ const Navbar = (props) => {
     dispatch(getProfile());
   }, [authState]);
 
+  useEffect(() => {
+    setActiveLink(path);
+  }, [path]);
+
   const guestLinks = (
     <Fragment>
       <li className='nav-item'>
         <Link
           className={activeLink !== '/login' ? 'nav-link' : 'nav-link active'}
           to='/login'
-          onClick={() => setActiveLink('/login')}
         >
           Login
         </Link>
@@ -36,7 +39,6 @@ const Navbar = (props) => {
         <Link
           className={activeLink !== '/search' ? 'nav-link' : 'nav-link active'}
           to='/search'
-          onClick={() => setActiveLink('/search')}
         >
           Search
         </Link>
@@ -45,7 +47,6 @@ const Navbar = (props) => {
         <Link
           className={activeLink !== '/profile' ? 'nav-link' : 'nav-link active'}
           to='/profile'
-          onClick={() => setActiveLink('/profile')}
         >
           Profile
         </Link>

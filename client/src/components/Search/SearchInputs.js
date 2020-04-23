@@ -6,21 +6,20 @@ const SearchInputs = ({ data }) => {
     <li className='list-group-item text-light bg-dark'>
       <div className='container'>
         <div className='row'>
-          <div className='worker-search-info col-sm'>
-            <h3>{data.name}</h3>
-            <p>{data.skills}</p>
-            <p>{data.location}</p>
-            <p>
-              <a href={`https://${data.website}`}>{data.website}</a>
-            </p>
-          </div>
           <div className='worker-search-picture col-sm'>
-            <p>No Picture</p>
+            <h3>{data.NameOf}</h3>
+            <img src={data.Photo} height='100px'></img>
+          </div>
+          <div className='worker-search-info col-sm'>
+            <p>{data.DisplayLocation}</p>
+            <p>
+              <a href={`https://${data.WebsiteLink}`}>{data.WebsiteLink}</a>
+            </p>
           </div>
           <div className='worker-search-bio col-sm'>
             <p>{data.bio}</p>
             <p>
-              Go to <Link to={`/user/${data.user}`}>Profile</Link>
+              Go to <Link to={`/user/${data.Username}`}>Profile</Link>
             </p>
           </div>
         </div>

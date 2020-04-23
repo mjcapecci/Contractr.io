@@ -1,5 +1,6 @@
 const db = require('./db');
 
+// ------ Auth
 function selectUserForCookie(id) {
   return new Promise((resolve) => {
     const sql = `SELECT * FROM user WHERE VendorID = ${id}`;
@@ -27,7 +28,9 @@ function selectUniqIdForDeserialize(user) {
     }
   });
 }
+// --------------
 
+// ------- Worker
 function checkForWorker(id) {
   return new Promise((resolve) => {
     const sql = `SELECT * FROM worker WHERE UniqUser = ${id}`;
@@ -83,7 +86,9 @@ function updateWorker(user, workerInfo) {
     }
   });
 }
+// --------------
 
+// ------ Skill
 function checkForSkill(skill) {
   return new Promise((resolve) => {
     const sql = `SELECT * FROM skill WHERE NameOf = '${skill}'`;
@@ -144,6 +149,7 @@ function deleteSkillFromWorker(user, skill) {
     }
   });
 }
+// --------------
 
 module.exports = {
   selectUserForCookie,

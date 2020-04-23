@@ -22,4 +22,9 @@ router.get('/profile', auth, (req, res) => {
   });
 });
 
+router.get('/public', auth, (req, res) => {
+  const username = req.query.username;
+  res.send(username);
+});
+
 module.exports = router;

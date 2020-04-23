@@ -1,13 +1,13 @@
 import {
-  GET_PROFILE,
   GET_USER,
-  GET_USERS,
+  GET_PUBLIC_PROFILE,
   USER_LOADING,
   USER_ERROR,
 } from '../actions/types';
 
 const initialState = {
   user: {},
+  publicProfile: null,
   loading: false,
   error: null,
 };
@@ -18,6 +18,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         user: action.payload,
+        loading: false,
+      };
+    case GET_PUBLIC_PROFILE:
+      return {
+        ...state,
+        publicProfile: action.payload,
         loading: false,
       };
     case USER_LOADING:

@@ -3,6 +3,7 @@ export const AUTH_LOADING = 'AUTH_LOADING';
 export const AUTH_ERROR = 'AUTH_ERROR';
 
 export const GET_USER = 'GET_USER';
+export const GET_PUBLIC_PROFILE = 'GET_PUBLIC_PROFILE';
 export const USER_LOADING = 'USER_LOADING';
 export const USER_ERROR = 'USER_ERROR';
 

@@ -27,6 +27,11 @@ export default function (state = initialState, action) {
         results: action.payload[1],
         loading: false,
       };
+    case CLEAR_SEARCH:
+      return {
+        ...state,
+        search: null,
+      };
     case SEARCH_LOADING:
       return {
         ...state,

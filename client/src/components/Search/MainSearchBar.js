@@ -1,13 +1,28 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeSearch } from '../../actions/searchActions';
 
-const MainSearchBar = () => {
+const MainSearchBar = ({ clear }) => {
+  const search = useSelector((state) => state.search.search);
   const dispatch = useDispatch();
 
   const [keyword, setKeyword] = useState('');
   const [location, setLocation] = useState('');
+
+  useEffect(() => {
+    if (search) {
+      setKeyword(search.keywordField);
+      setLocation(search.locationField);
+    }
+  }, [search]);
+
+  useEffect(() => {
+    if (clear) {
+      setKeyword('');
+      setLocation('');
+    }
+  }, []);
 
   const onSubmit = () => {
     const searchQuery = {

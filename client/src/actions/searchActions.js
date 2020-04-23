@@ -46,6 +46,12 @@ export const getSearchResults = (searchQuery) => async (dispatch) => {
   }
 };
 
+export const clearSearch = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_SEARCH,
+  });
+};
+
 export const searchLoading = () => (dispatch) => {
   dispatch({
     type: SEARCH_LOADING,

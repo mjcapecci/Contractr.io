@@ -23,10 +23,11 @@ router.get('/', (req, res) => {
     let sql = `
     CREATE TEMPORARY TABLE skilltemp
     SELECT * FROM skill WHERE NameOf = '${keyword}';
-    SELECT * FROM worker
-    INNER JOIN workerskilljt
-    ON worker.UniqWorker = workerskilljt.UniqWorker
-    WHERE workerskilljt.UniqSkill = (SELECT UniqSkill FROM skilltemp) && worker.Location = '${location}';
+    SELECT a.WebsiteLink, a.Bio, a.Location, a.DisplayLocation, a.Username, b.NameOf, b.Photo FROM worker a
+    INNER JOIN user b ON a.UniqUser = b.UniqUser
+    INNER JOIN workerskilljt c
+    ON a.UniqWorker = c.UniqWorker
+    WHERE c.UniqSkill = (SELECT UniqSkill FROM skilltemp) && a.Location = ${location};
     DROP TEMPORARY TABLE skilltemp;
     `;
     db.query(sql, (err, result) => {
