@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../utils/db');
 const auth = require('../middleware/auth');
+const asyncSQL = require('../utils/asyncSQL');
 
 router.get('/', auth, (req, res) => {
   res.redirect(301, 'http://localhost:3000');
@@ -22,9 +22,11 @@ router.get('/profile', auth, (req, res) => {
   });
 });
 
-router.get('/public', auth, (req, res) => {
+router.get('/public', auth, async (req, res) => {
   const username = req.query.username;
-  res.send(username);
+  const publicProfile = await asyncSQL.getPublicProfile(username);
+  const publicSkills = await asyncSQL.getPublicSkills(username);
+  res.json({ profile: publicProfile, skills: publicSkills });
 });
 
 module.exports = router;

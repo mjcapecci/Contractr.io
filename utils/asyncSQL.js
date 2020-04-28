@@ -86,12 +86,45 @@ function updateWorker(user, workerInfo) {
     }
   });
 }
+
+function getPublicProfile(username) {
+  return new Promise((resolve) => {
+    const sql = `SELECT a.WebsiteLink, a.DisplayLocation, a.Username, a.Bio, b.NameOf, b.RegistrationDate, b.Photo FROM worker a
+    INNER JOIN user b ON a.UniqUser = b.UniqUser
+    WHERE a.Username = '${username}'`;
+    try {
+      db.query(sql, (err, result) => {
+        if (err) throw err;
+        resolve(result);
+      });
+    } catch (error) {
+      resolve(error.message);
+    }
+  });
+}
 // --------------
 
 // ------ Skill
 function checkForSkill(skill) {
   return new Promise((resolve) => {
     const sql = `SELECT * FROM skill WHERE NameOf = '${skill}'`;
+    try {
+      db.query(sql, (err, result) => {
+        if (err) throw err;
+        resolve(result);
+      });
+    } catch (error) {
+      resolve(error.message);
+    }
+  });
+}
+
+function getPublicSkills(username) {
+  return new Promise((resolve) => {
+    const sql = `SELECT a.NameOf FROM skill a
+    INNER JOIN workerskilljt b ON a.UniqSkill = b.UniqSkill
+    INNER JOIN worker c ON b.UniqWorker = c.UniqWorker
+    WHERE c.Username = '${username}'`;
     try {
       db.query(sql, (err, result) => {
         if (err) throw err;
@@ -158,7 +191,9 @@ module.exports = {
   checkForUsername,
   addWorker,
   updateWorker,
+  getPublicProfile,
   checkForSkill,
+  getPublicSkills,
   addSkillToPool,
   addWorkerSkill,
   deleteSkillFromWorker,
