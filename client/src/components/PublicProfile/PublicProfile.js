@@ -14,7 +14,7 @@ const PublicProfile = ({ user }) => {
     dispatch(getPublicProfile(user));
   }, []);
 
-  info && console.log(info.profile[0]);
+  info && console.log(info.profile);
   return !loading && info ? (
     <div className='user'>
       <h1>{info.profile[0].NameOf}</h1>

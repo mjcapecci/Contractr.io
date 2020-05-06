@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { deleteMySkill } from '../../actions/skillActions';
+import { deleteMySkill, updateMySkill } from '../../actions/skillActions';
 
 // This components will contain the update and delete request for particular skills
 
@@ -36,7 +36,12 @@ const PersonalSkillItems = ({ data }) => {
               placeholder='Update skill...'
               onChange={(e) => setSkillValue(e.target.value)}
             />
-            <motion.button onClick={() => setToggle(!isToggled)}>
+            <motion.button
+              onClick={() => {
+                setToggle(!isToggled);
+                dispatch(updateMySkill(data.UniqSkill, skillValue));
+              }}
+            >
               <i className='far fa-check-circle green'></i>
             </motion.button>
             <motion.button

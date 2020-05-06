@@ -17,6 +17,7 @@ export const WORKER_ERROR = 'WORKER_ERROR';
 export const GET_MY_SKILLS = 'GET_SKILLS';
 export const ADD_SKILL = 'ADD_SKILL';
 export const DELETE_MY_SKILL = 'DELETE_MY_SKILL';
+export const UPDATE_MY_SKILL = 'UPDATE_MY_SKILL';
 export const SKILL_LOADING = 'SKILL_LOADING';
 export const SKILL_ERROR = 'SKILL_ERROR';
 
