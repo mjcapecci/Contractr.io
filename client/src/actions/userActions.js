@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   GET_USER,
   GET_PUBLIC_PROFILE,
+  LOGOUT_USER,
   USER_LOADING,
   USER_ERROR,
 } from './types';
@@ -28,6 +29,21 @@ export const getPublicProfile = (username) => async (dispatch) => {
     const res = await axios.get(`/api/users/public?username=${username}`);
     dispatch({
       type: GET_PUBLIC_PROFILE,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_ERROR,
+      payload: error.response.statusText,
+    });
+  }
+};
+
+export const logoutUser = () => async (dispatch) => {
+  try {
+    const res = await axios.post('/api/users/logout');
+    dispatch({
+      type: LOGOUT_USER,
       payload: res.data,
     });
   } catch (error) {

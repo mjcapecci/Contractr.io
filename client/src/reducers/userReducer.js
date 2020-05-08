@@ -1,6 +1,7 @@
 import {
   GET_USER,
   GET_PUBLIC_PROFILE,
+  LOGOUT_USER,
   USER_LOADING,
   USER_ERROR,
 } from '../actions/types';
@@ -25,6 +26,11 @@ export default function (state = initialState, action) {
         ...state,
         publicProfile: action.payload,
         loading: false,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        user: action.payload,
       };
     case USER_LOADING:
       return {

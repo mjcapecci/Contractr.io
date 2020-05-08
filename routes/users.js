@@ -22,11 +22,15 @@ router.get('/profile', auth, (req, res) => {
   });
 });
 
-router.get('/public', auth, async (req, res) => {
+router.get('/public', async (req, res) => {
   const username = req.query.username;
   const publicProfile = await asyncSQL.getPublicProfile(username);
   const publicSkills = await asyncSQL.getPublicSkills(username);
   res.json({ profile: publicProfile, skills: publicSkills });
 });
 
+router.post('/logout', (req, res) => {
+  req.logOut();
+  res.redirect('/');
+});
 module.exports = router;

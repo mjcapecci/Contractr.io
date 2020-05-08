@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getStatus } from '../../actions/authActions';
-import { getProfile } from '../../actions/userActions';
+import { getProfile, logoutUser } from '../../actions/userActions';
 import { Link, useLocation } from 'react-router-dom';
 import './layout.scss';
 
@@ -49,6 +49,20 @@ const Navbar = (props) => {
           to='/profile'
         >
           Profile
+        </Link>
+      </li>
+      <li className='nav-item'>
+        <Link
+          className='nav-link'
+          to='/'
+          onClick={() => {
+            dispatch(logoutUser());
+            setTimeout(() => {
+              window.location.reload();
+            }, 100);
+          }}
+        >
+          Logout
         </Link>
       </li>
     </Fragment>
