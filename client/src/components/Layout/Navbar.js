@@ -70,21 +70,34 @@ const Navbar = (props) => {
 
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark justify-content-between shadow'>
+      <button
+        className='navbar-toggler'
+        type='button'
+        data-toggle='collapse'
+        data-target='#main-nav'
+        aria-controls='navbarTogglerDemo01'
+        aria-expanded='false'
+        aria-label='Toggle navigation'
+      >
+        <span class='navbar-toggler-icon'></span>
+      </button>
       <Link className='navbar-brand' to='/' onClick={() => setActiveLink('/')}>
         Contractr.io
       </Link>
-      <ul className='navbar-nav'>
-        <li className='nav-item'>
-          <Link
-            className={activeLink !== '/' ? 'nav-link' : 'nav-link active'}
-            to='/'
-            onClick={() => setActiveLink('/')}
-          >
-            Home
-          </Link>
-        </li>
-        {authState ? authLinks : guestLinks}
-      </ul>
+      <div id='main-nav'>
+        <ul className='navbar-nav'>
+          <li className='nav-item'>
+            <Link
+              className={activeLink !== '/' ? 'nav-link' : 'nav-link active'}
+              to='/'
+              onClick={() => setActiveLink('/')}
+            >
+              Home
+            </Link>
+          </li>
+          {authState ? authLinks : guestLinks}
+        </ul>
+      </div>
     </nav>
   );
 };

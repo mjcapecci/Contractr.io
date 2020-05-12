@@ -37,6 +37,13 @@ export const addSkill = (skill) => async (dispatch) => {
     },
   };
   const res = await axios.post('/api/skills/add', { skill }, config);
+  if (res.data == 'Duplicate Entry') {
+    dispatch({
+      type: SKILL_ERROR,
+      payload: res.data,
+    });
+    return;
+  }
   try {
     dispatch({
       type: ADD_SKILL,

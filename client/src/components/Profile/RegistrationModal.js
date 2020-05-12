@@ -124,7 +124,7 @@ const RegistrationModal = ({
               left: '0px',
               height: '100vh',
               width: '100vw',
-              background: 'rgba(0, 0, 0, 0.64)',
+              background: 'rgba(0, 0, 0, 0.94)',
               zIndex: 1,
             }}
           ></motion.div>

@@ -29,21 +29,25 @@ router.post('/add', auth, async (req, res) => {
 
   const skillExists = await asyncSQL.checkForSkill(skill);
   if (skillExists.length == 0) await asyncSQL.addSkillToPool(skill);
-  await asyncSQL.addWorkerSkill(user, skill);
-  try {
-    let sql = `
-    SELECT workerskilljt.UniqSkill, skill.NameOf FROM workerskilljt
-    INNER JOIN skill
-    ON workerskilljt.UniqSkill = skill.UniqSkill
-    WHERE workerskilljt.UniqWorker = ${user}
-    `;
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      res.status(200).send(result);
-    });
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Internal Server Error');
+  const workerSkill = await asyncSQL.addWorkerSkill(user, skill);
+  if (workerSkill != 'Error: Duplicate Entry') {
+    try {
+      let sql = `
+      SELECT workerskilljt.UniqSkill, skill.NameOf FROM workerskilljt
+      INNER JOIN skill
+      ON workerskilljt.UniqSkill = skill.UniqSkill
+      WHERE workerskilljt.UniqWorker = ${user}
+      `;
+      db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result);
+      });
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Internal Server Error');
+    }
+  } else {
+    res.status(200).send('Duplicate Entry');
   }
 });
 

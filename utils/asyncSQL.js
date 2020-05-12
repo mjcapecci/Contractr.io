@@ -157,7 +157,13 @@ function addWorkerSkill(user, skill) {
      FROM skill WHERE skill.NameOf = '${skill}';`;
     try {
       db.query(sql, (err, result) => {
-        if (err) throw err;
+        if (err) {
+          if (err.code == 'ER_DUP_ENTRY') {
+            resolve('Error: Duplicate Entry');
+            return;
+          }
+          throw err;
+        }
         resolve(result);
       });
     } catch (error) {

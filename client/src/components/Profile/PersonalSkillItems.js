@@ -39,6 +39,14 @@ const PersonalSkillItems = ({ data }) => {
             <motion.button
               onClick={() => {
                 setToggle(!isToggled);
+                setSkillValue(initialSkillValue);
+              }}
+            >
+              <i className='fas fa-undo-alt blue-down text-primary'></i>
+            </motion.button>
+            <motion.button
+              onClick={() => {
+                setToggle(!isToggled);
                 dispatch(updateMySkill(data.UniqSkill, skillValue));
               }}
             >
