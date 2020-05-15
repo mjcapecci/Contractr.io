@@ -24,12 +24,14 @@ router.get('/', async (req, res) => {
   try {
     let sql = `
     CREATE TEMPORARY TABLE skilltemp
-    SELECT * FROM skill WHERE NameOf = '${keyword}';
+    SELECT * FROM skill WHERE NameOf LIKE '%${keyword}%';
+    
     SELECT a.WebsiteLink, a.Bio, a.Location, a.DisplayLocation, a.Username, b.NameOf, b.Photo FROM worker a
     INNER JOIN user b ON a.UniqUser = b.UniqUser
-    INNER JOIN workerskilljt c
+  	 INNER JOIN workerskilljt c
     ON a.UniqWorker = c.UniqWorker
-    WHERE c.UniqSkill = (SELECT UniqSkill FROM skilltemp) && a.Location IN (${radiusQuery});
+    WHERE c.UniqSkill IN (SELECT UniqSkill FROM skilltemp) && a.Location IN (${radiusQuery});
+    
     DROP TEMPORARY TABLE skilltemp;
     `;
     db.query(sql, (err, result) => {

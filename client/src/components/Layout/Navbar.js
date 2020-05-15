@@ -82,7 +82,7 @@ const Navbar = (props) => {
         <span class='navbar-toggler-icon'></span>
       </button>
       <Link className='navbar-brand' to='/' onClick={() => setActiveLink('/')}>
-        Contractr.io
+        Contractr.io (Beta)
       </Link>
       <div id='main-nav'>
         <ul className='navbar-nav'>
