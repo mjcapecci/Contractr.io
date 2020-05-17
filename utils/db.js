@@ -17,6 +17,5 @@ const db = (dbMode = 'DEV'
       user: process.env.DB_DEV_USER,
       password: process.env.DB_DEV_PASSWORD,
       database: process.env.DB_DEV_DATABASE,
-      socketPath: '/var/run/mysqld/mysqld.sock',
     }));
 module.exports = db;
