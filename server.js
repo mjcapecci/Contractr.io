@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const db = require('./utils/db');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
@@ -30,6 +31,13 @@ app.use('/api/workers', require('./routes/workers'));
 app.use('/api/skills', require('./routes/skills'));
 
 // --------
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 

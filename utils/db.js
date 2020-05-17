@@ -1,12 +1,21 @@
 const mysql = require('mysql');
 
-// Create db connection
-const db = mysql.createConnection({
-  multipleStatements: true,
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-});
+let dbMode = process.env.NODE_ENV;
 
+// Create db connection
+const db = (dbMode = 'DEV'
+  ? mysql.createConnection({
+      multipleStatements: true,
+      host: process.env.DB_DEV_HOST,
+      user: process.env.DB_DEV_USER,
+      password: process.env.DB_DEV_PASSWORD,
+      database: process.env.DB_DEV_DATABASE,
+    })
+  : mysql.createConnection({
+      multipleStatements: true,
+      host: process.env.DB_PROD_HOST,
+      user: process.env.DB_PROD_USER,
+      password: process.env.DB_PROD_PASSWORD,
+      database: process.env.DB_PROD_DATABASE,
+    }));
 module.exports = db;
