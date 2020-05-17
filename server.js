@@ -18,6 +18,7 @@ app.use(passport.session());
 
 db.connect((err) => {
   if (err) {
+    console.error('Error Connecting: ' + err.stack);
     throw err;
   }
   console.log('MySQL Connected');
