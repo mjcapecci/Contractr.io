@@ -11,5 +11,12 @@ const db = (dbMode = 'DEV'
       password: process.env.DB_DEV_PASSWORD,
       database: process.env.DB_DEV_DATABASE,
     })
-  : mysql.createConnection(process.env.JAWSDB_MARIA_URL));
+  : mysql.createConnection({
+      multipleStatements: true,
+      host: process.env.DB_DEV_HOST,
+      user: process.env.DB_DEV_USER,
+      password: process.env.DB_DEV_PASSWORD,
+      database: process.env.DB_DEV_DATABASE,
+      socketPath: '/var/run/mysqld/mysqld.sock',
+    }));
 module.exports = db;
