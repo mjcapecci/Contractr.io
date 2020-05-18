@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 const asyncSQL = require('../utils/asyncSQL');
 
 router.get('/', auth, (req, res) => {
-  res.redirect(301, 'http://localhost:3000');
+  res.redirect(301, 'https:/www.contractr.io');
 });
 
 router.get('/auth', auth, (req, res) => {
