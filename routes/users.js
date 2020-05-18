@@ -3,7 +3,8 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const asyncSQL = require('../utils/asyncSQL');
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
+  console.log('Request: ' + req);
   res.redirect(301, 'https://www.contractr.io');
 });
 
