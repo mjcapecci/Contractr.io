@@ -6,10 +6,12 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 
 app.use(express.json({ extended: false }));
+app.enable('trust proxy');
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
     keys: [process.env.COOKIE_KEY],
+    secureProxy: true,
   })
 );
 
