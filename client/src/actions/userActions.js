@@ -11,10 +11,13 @@ export const getProfile = () => async (dispatch) => {
   dispatch(userLoading());
   try {
     const res = await axios.get('/api/users/profile');
-    dispatch({
-      type: GET_USER,
-      payload: res.data,
-    });
+    // Server-side auth middleware returns JSON that is parsed with the following code
+    if (Object.values(res.data)[0] != false) {
+      dispatch({
+        type: GET_USER,
+        payload: res.data,
+      });
+    }
   } catch (error) {
     dispatch({
       type: USER_ERROR,
