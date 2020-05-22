@@ -67,6 +67,9 @@ passport.use(
   )
 );
 
+// @route   GET api/auth/google
+// @desc    Provides redirect token for Google OAuth2 Login
+// Public
 router.get(
   '/google',
   passport.authenticate('google', {
@@ -74,8 +77,11 @@ router.get(
   })
 );
 
+// @route   GET api/auth/google
+// @desc    Provides secondary token for Google OAuth2 Login
+// Public
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-  res.send(res.redirect('/api/users/'));
+  res.redirect('/api/users');
 });
 
 module.exports = router;

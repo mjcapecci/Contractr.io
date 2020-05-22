@@ -3,15 +3,23 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const asyncSQL = require('../utils/asyncSQL');
 
+// @route   GET api/users
+// @desc    Redirects user after verified login
+// Private
 router.get('/', auth, (req, res) => {
-  console.log('Request: ' + req);
-  res.redirect(301, 'https://www.contractr.io');
+  res.redirect(301, 'http://localhost:3000/');
 });
 
+// @route   GET api/users/auth
+// @desc    Notifies the front end of the client's auth status
+// Private
 router.get('/auth', auth, (req, res) => {
   res.json({ isAuthenticated: true });
 });
 
+// @route   GET api/users/profile
+// @desc    Provides private info of the logged-in user's profile
+// Private
 router.get('/profile', auth, (req, res) => {
   const user = req.user[0];
   res.status(200).json({
@@ -23,6 +31,9 @@ router.get('/profile', auth, (req, res) => {
   });
 });
 
+// @route   GET api/users/public
+// @desc    Provides public info of a worker account found via search
+// Public
 router.get('/public', async (req, res) => {
   const username = req.query.username;
   const publicProfile = await asyncSQL.getPublicProfile(username);
@@ -30,8 +41,11 @@ router.get('/public', async (req, res) => {
   res.json({ profile: publicProfile, skills: publicSkills });
 });
 
-router.post('/logout', (req, res) => {
+// @route   POST api/users/public
+// @desc    Terminates logged-in express cookies session
+// Private
+router.post('/logout', auth, (req, res) => {
   req.logOut();
-  res.redirect('/');
+  res.send('TEST');
 });
 module.exports = router;

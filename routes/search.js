@@ -3,6 +3,9 @@ const router = express.Router();
 const db = require('../utils/db');
 const zip = require('zipcodes');
 
+// @route   POST api/search
+// @desc    Logs all user searches into database
+// Public
 router.post('/', (req, res) => {
   const { keywordField, locationField } = req.body;
   try {
@@ -18,6 +21,9 @@ router.post('/', (req, res) => {
   }
 });
 
+// @route   GET api/search
+// @desc    Retreives results from the database based on the corresponding user search
+// Public
 router.get('/', async (req, res) => {
   const { keyword, location } = req.query;
   const radiusQuery = await getRadius(location, 50);

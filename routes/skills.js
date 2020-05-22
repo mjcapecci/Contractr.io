@@ -4,6 +4,9 @@ const db = require('../utils/db');
 const asyncSQL = require('../utils/asyncSQL');
 const auth = require('../middleware/auth');
 
+// @route   POST api/skills
+// @desc    Selects all skills associated with the posted worker
+// Private
 router.post('/', auth, (req, res) => {
   const { worker } = req.body;
   try {
@@ -23,6 +26,9 @@ router.post('/', auth, (req, res) => {
   }
 });
 
+// @route   POST api/skills/add
+// @desc    Adds skill the the corresponding worker
+// Private
 router.post('/add', auth, async (req, res) => {
   const { skill } = req.body;
   const user = req.user[0].UniqUser;
@@ -51,6 +57,9 @@ router.post('/add', auth, async (req, res) => {
   }
 });
 
+// @route   PUT api/skills/:skill
+// @desc    Updates the selected worker skill
+// Private
 router.put('/:skill', auth, async (req, res) => {
   const user = req.user[0].UniqUser;
   const skill = req.params.skill;
@@ -77,6 +86,9 @@ router.put('/:skill', auth, async (req, res) => {
   }
 });
 
+// @route   DELETE api/skills/:skill
+// @desc    Deletes selected skill from workerskilljt table only
+// Private
 router.delete('/:skill', auth, async (req, res) => {
   const user = req.user[0].UniqUser;
   const skill = req.params.skill;

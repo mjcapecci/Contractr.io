@@ -59,7 +59,7 @@ const Navbar = (props) => {
             dispatch(logoutUser());
             setTimeout(() => {
               window.location.reload();
-            }, 100);
+            }, 1000);
           }}
         >
           Logout

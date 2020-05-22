@@ -42,6 +42,7 @@ export const getPublicProfile = (username) => async (dispatch) => {
 export const logoutUser = () => async (dispatch) => {
   try {
     const res = await axios.post('/api/users/logout');
+    console.log(res.data);
     dispatch({
       type: LOGOUT_USER,
       payload: res.data,
