@@ -14,33 +14,37 @@ const PublicProfile = ({ user }) => {
     dispatch(getPublicProfile(user));
   }, []);
 
-  info && console.log(info.profile);
-  return !loading && info ? (
-    <div className='user'>
-      <h1>{info.profile[0].NameOf}</h1>
-      <h3>{user}</h3>
-      <img
-        src={info.profile[0].Photo}
-        height='70px'
-        alt={'Public profile picture of ' + user}
-      />
-      <p>{info.profile[0].DisplayLocation}</p>
-      <p>
-        Member Since:{' '}
-        {moment(info.profile[0].RegistrationDate).format('MMMM Do, YYYY')}
-      </p>
-      <p>
-        <a href={'https://' + info.profile[0].WebsiteLink}>
-          {info.profile[0].WebsiteLink}
-        </a>
-      </p>
-      <div className='bio-box'>
-        <p className='bio-text'>{info.profile[0].Bio}</p>
+  if (!loading && info) {
+    console.log(info.profile);
+    return info.profile.length != 0 ? (
+      <div className='user'>
+        <h1>{info.profile[0].NameOf}</h1>
+        <h3>{user}</h3>
+        <img
+          src={info.profile[0].Photo}
+          height='70px'
+          alt={'Public profile picture of ' + user}
+        />
+        <p>{info.profile[0].DisplayLocation}</p>
+        <p>
+          Member Since:{' '}
+          {moment(info.profile[0].RegistrationDate).format('MMMM Do, YYYY')}
+        </p>
+        <p>
+          <a href={'https://' + info.profile[0].WebsiteLink}>
+            {info.profile[0].WebsiteLink}
+          </a>
+        </p>
+        <div className='bio-box'>
+          <p className='bio-text'>{info.profile[0].Bio}</p>
+        </div>
       </div>
-    </div>
-  ) : (
-    <Preloader />
-  );
+    ) : (
+      <h1>That user does not exist</h1>
+    );
+  } else {
+    return <Preloader />;
+  }
 };
 
 export default PublicProfile;

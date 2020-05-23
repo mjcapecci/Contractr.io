@@ -51,6 +51,7 @@ export const logoutUser = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
+    console.log(error);
     dispatch({
       type: USER_ERROR,
       payload: error.response.statusText,
