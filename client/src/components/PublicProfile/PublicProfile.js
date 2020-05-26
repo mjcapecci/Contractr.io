@@ -14,8 +14,13 @@ const PublicProfile = ({ user }) => {
     dispatch(getPublicProfile(user));
   }, []);
 
+  let skills = info
+    ? info.skills.map((skill) => ' ' + skill.NameOf)
+    : 'No Skills Entered';
+
+  console.log(skills);
+
   if (!loading && info) {
-    console.log(info.profile);
     return info.profile.length != 0 ? (
       <div className='user'>
         <h1>{info.profile[0].NameOf}</h1>
@@ -35,6 +40,7 @@ const PublicProfile = ({ user }) => {
             {info.profile[0].WebsiteLink}
           </a>
         </p>
+        <p>Skills Include: {skills.toString()}</p>
         <div className='bio-box'>
           <p className='bio-text'>{info.profile[0].Bio}</p>
         </div>

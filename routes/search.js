@@ -26,6 +26,10 @@ router.post('/', (req, res) => {
 // Public
 router.get('/', async (req, res) => {
   const { keyword, location } = req.query;
+  if (!keyword || !location) {
+    res.send('Please enter all search terms.');
+    return;
+  }
   const radiusQuery = await getRadius(location, 50);
   try {
     let sql = `
@@ -42,9 +46,23 @@ router.get('/', async (req, res) => {
     `;
     db.query(sql, (err, result) => {
       if (err) throw err;
-      console.log(result);
+      let usernameFilter = new Map();
+      let filteredResults = [];
+      // Create username filter
+      result[1].map((item) => {
+        if (!usernameFilter.has(item.Username)) {
+          usernameFilter.set(item.Username);
+        }
+      });
+      // Utilize username filter
+      result[1].map((item) => {
+        if (usernameFilter.has(item.Username)) {
+          usernameFilter.delete(item.Username);
+          filteredResults.push(item);
+        }
+      });
       res.status(200);
-      res.send(result);
+      res.send(filteredResults);
     });
   } catch (error) {
     console.error(error.message);

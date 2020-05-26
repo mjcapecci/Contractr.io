@@ -24,7 +24,7 @@ export default function (state = initialState, action) {
     case GET_SEARCH_RESULTS:
       return {
         ...state,
-        results: action.payload[1],
+        results: action.payload,
         loading: false,
       };
     case CLEAR_SEARCH:

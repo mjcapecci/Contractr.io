@@ -8,18 +8,22 @@ let resultCounter = 0;
 
 const SearchInputGroup = () => {
   const results = useSelector((state) => state.search.results);
-
   return (
-    results.length > 0 && (
-      <>
-        <h2 className='mt-4 mb-4'>Search Results</h2>
-        <ul className='list-group mt-4 search-results shadow'>
-          {results.map((input) => (
+    <>
+      <h2 className='mt-4 mb-4'>Search Results</h2>
+      <ul className='list-group mt-4 search-results shadow'>
+        {results != 'Please enter all search terms.' &&
+          results.map((input) => (
             <SearchInputs data={input} key={resultCounter++} />
           ))}
-        </ul>
-      </>
-    )
+      </ul>
+      {results == 'Please enter all search terms.' && (
+        <>
+          <h5>There are no results for this search!</h5>
+          <small>Please make sure both search fields are complete.</small>
+        </>
+      )}
+    </>
   );
 };
 
