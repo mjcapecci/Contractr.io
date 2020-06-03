@@ -37,14 +37,6 @@ const Navbar = (props) => {
     <Fragment>
       <li className='nav-item'>
         <Link
-          className={activeLink !== '/search' ? 'nav-link' : 'nav-link active'}
-          to='/search'
-        >
-          Search
-        </Link>
-      </li>
-      <li className='nav-item'>
-        <Link
           className={activeLink !== '/profile' ? 'nav-link' : 'nav-link active'}
           to='/profile'
         >
@@ -82,7 +74,7 @@ const Navbar = (props) => {
         <span class='navbar-toggler-icon'></span>
       </button>
       <Link className='navbar-brand' to='/' onClick={() => setActiveLink('/')}>
-        Contractr.io (Beta)
+        Contractr.io
       </Link>
       <div id='main-nav'>
         <ul className='navbar-nav'>

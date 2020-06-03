@@ -22,9 +22,9 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Fragment>
+        <div className='main'>
           <Navbar></Navbar>
-          <div className='container'>
+          <div className='container content-container'>
             <Switch>
               <Route exact path='/' component={Landing} />
               <Route exact path='/search' component={Search} />
@@ -35,7 +35,7 @@ function App() {
             </Switch>
           </div>
           <Footer></Footer>
-        </Fragment>
+        </div>
       </Router>
     </Provider>
   );

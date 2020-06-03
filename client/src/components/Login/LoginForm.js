@@ -1,14 +1,15 @@
 import React from 'react';
+import './login.scss';
 
 const LoginForm = () => {
   return (
     <div>
       <button
         onClick={() => {
-          window.location.href = 'https://www.contractr.io/api/auth/google';
+          window.location.href = 'http://localhost:5000/api/auth/google';
         }}
       >
-        Login with Google
+        <i class='fab fa-google'></i> Login with <strong>Google</strong>
       </button>
     </div>
   );

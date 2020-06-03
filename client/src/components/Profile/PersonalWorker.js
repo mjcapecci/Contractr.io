@@ -108,7 +108,7 @@ const PersonalWorker = () => {
           <input
             name='website'
             type='text'
-            placeholder='Your company website...'
+            placeholder='Without HTTP/HTTPS...'
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
           />
@@ -135,26 +135,37 @@ const PersonalWorker = () => {
   ) : (
     <>
       <div className='workerInfo'>
-        <h2>Worker Info</h2>
-        <h5>Username:</h5>
-        <p>{worker.currentWorker[0].Username}</p>
-        <h5>Bio:</h5>
-        <p>{worker.currentWorker[0].Bio}</p>
-        <h5>Contact Email:</h5>
-        <p>{worker.currentWorker[0].ContactEmail}</p>
-        <h5>Website Link:</h5>
-        <p>
+        <h2 className='text-center'>Worker Info</h2>
+        <hr />
+        <p className='full-box'>
+          <span className='bold-category'>Username:</span>{' '}
+          {worker.currentWorker[0].Username}
+        </p>
+        <p className='full-box'>
+          <span className='bold-category'>Bio:</span>{' '}
+          {worker.currentWorker[0].Bio}
+        </p>
+        <p className='full-box'>
+          <span className='bold-category'>Contact Email:</span>{' '}
+          {worker.currentWorker[0].ContactEmail}
+        </p>
+        <p className='full-box'>
+          <span className='bold-category'>Website Link:</span>{' '}
           <a
-            href={'http://' + worker.currentWorker[0].WebsiteLink}
+            href={'https://' + worker.currentWorker[0].WebsiteLink}
             target='_blank'
           >
             {worker.currentWorker[0].WebsiteLink}
           </a>
         </p>
-        <h5>Display Location:</h5>
-        <p>{worker.currentWorker[0].DisplayLocation}</p>
-        <h5>Zip Code:</h5>
-        <p>{worker.currentWorker[0].Location}</p>
+        <p className='full-box'>
+          <span className='bold-category'>Display Location:</span>{' '}
+          {worker.currentWorker[0].DisplayLocation}
+        </p>
+        <p className='full-box'>
+          <span className='bold-category'>Zip Code:</span>{' '}
+          {worker.currentWorker[0].Location}
+        </p>
         <p>
           <button
             onClick={() => {

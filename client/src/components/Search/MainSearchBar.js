@@ -58,7 +58,7 @@ const MainSearchBar = ({ clear }) => {
         <input
           type='text'
           className='form-control rounded-right'
-          placeholder='City and State, Zip Code'
+          placeholder='Zip Code'
           aria-label='Where are you?'
           aria-describedby='addon-wrapping'
           value={location}

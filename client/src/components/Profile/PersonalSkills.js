@@ -4,6 +4,7 @@ import { getMySkills, addSkill } from '../../actions/skillActions';
 import PersonalSkillItems from './PersonalSkillItems';
 import { motion } from 'framer-motion';
 import Preloader from '../Layout/Preloader';
+import './profile.scss';
 
 const PersonalSkills = () => {
   const worker = useSelector((state) => state.worker);
@@ -42,7 +43,8 @@ const PersonalSkills = () => {
   return !loading ? (
     worker.currentWorker.length > 0 && (
       <div className='skillsInfo'>
-        <h3>My Skills</h3>
+        <h3 className='text-center'>My Skills</h3>
+        <hr />
         {skills.map((skill) => (
           <PersonalSkillItems data={skill} key={skill.UniqSkill} />
         ))}
@@ -82,7 +84,7 @@ const PersonalSkills = () => {
             animate={{ opacity: 1, x: -5 }}
             onClick={() => setToggle(!isToggled)}
           >
-            <i className='far fa-plus-square'></i>
+            <i className='far fa-plus-square skill-button'></i>
           </motion.button>
         )}
         <hr />
@@ -90,7 +92,7 @@ const PersonalSkills = () => {
     )
   ) : (
     <>
-      <h3>My Skills</h3>
+      <h3 className='text-center'>My Skills</h3>
       <Preloader />
     </>
   );

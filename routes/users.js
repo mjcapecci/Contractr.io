@@ -7,7 +7,7 @@ const asyncSQL = require('../utils/asyncSQL');
 // @desc    Redirects user after verified login
 // Private
 router.get('/', auth, (req, res) => {
-  res.redirect(301, 'https://www.contractr.io');
+  res.redirect(301, 'http://localhost:3000/');
 });
 
 // @route   GET api/users/auth

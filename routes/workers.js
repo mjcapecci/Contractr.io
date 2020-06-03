@@ -29,7 +29,8 @@ router.put('/', auth, async (req, res) => {
   const user = req.user[0].UniqUser;
   const workerInfo = req.body;
   await asyncSQL.updateWorker(user, workerInfo);
-  const worker = await asyncSQL.chew;
+  const worker = await asyncSQL.checkForWorker(req.user[0].UniqUser);
+  res.send(worker);
 });
 
 // @route   POST api/workers

@@ -14,8 +14,8 @@ const Hero = () => {
 
   return (
     <div className='jumbotron jumbotron-fluid bg-transparent hero'>
-      <h1 className='display-4'>Find Local Help</h1>
-      <p className='lead'>
+      <h1 className='display-4 text-center'>Find Local Help</h1>
+      <p className='lead text-center'>
         Enter details about the contractor you are looking for.
       </p>
       <MainSearchBar clear={true} />

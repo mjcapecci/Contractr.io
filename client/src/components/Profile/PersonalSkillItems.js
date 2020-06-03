@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { deleteMySkill, updateMySkill } from '../../actions/skillActions';
+import './profile.scss';
 
 // This components will contain the update and delete request for particular skills
 
@@ -24,7 +25,7 @@ const PersonalSkillItems = ({ data }) => {
               setInitialSkillValue(skillValue);
             }}
           >
-            <i className='far fa-edit'></i>
+            <i className='far fa-edit skill-button'></i>
           </motion.button>
         </>
       ) : (

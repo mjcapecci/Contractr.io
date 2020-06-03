@@ -1,14 +1,19 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import MainSearchBar from '../components/Search/MainSearchBar';
 import SearchInputGroup from '../components/Search/SearchInputGroup';
 
 const Search = () => {
   return (
-    <section className='search'>
-      <MainSearchBar />
-      <SearchInputGroup />
-    </section>
+    <>
+      <Helmet>
+        <title>Contractr.io | Search</title>
+      </Helmet>
+      <section className='search'>
+        <MainSearchBar />
+        <SearchInputGroup />
+      </section>
+    </>
   );
 };
 
