@@ -12,6 +12,7 @@ export const getProfile = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/users/profile');
     // Server-side auth middleware returns JSON that is parsed with the following code
+    // eslint-disable-next-line
     if (Object.values(res.data)[0] != false) {
       dispatch({
         type: GET_USER,

@@ -18,6 +18,8 @@ const PersonalWorker = () => {
   const [location, setLocation] = useState('');
   const [displayLocation, setDisplayLocation] = useState('');
 
+  const [charCount, setCharCount] = useState(0);
+
   const formControls = {
     setUsername,
     setBio,
@@ -47,6 +49,7 @@ const PersonalWorker = () => {
 
   useEffect(() => {
     dispatch(getWorker());
+    // eslint-disable-next-line
   }, []);
 
   return !worker.currentWorker.length > 0 ? (
@@ -93,8 +96,14 @@ const PersonalWorker = () => {
             rows='10'
             placeholder='Your bio...'
             value={bio}
-            onChange={(e) => setBio(e.target.value)}
+            onChange={(e) => {
+              setBio(e.target.value);
+              setCharCount(e.target.value.length);
+            }}
           ></textarea>
+          <div>
+            <small className='character-count'>Characters: </small>
+          </div>
           <label htmlFor='contactEmail'>Contact Email:</label>
           <input
             name='contactEmail'
@@ -141,7 +150,7 @@ const PersonalWorker = () => {
           <span className='bold-category'>Username:</span>{' '}
           {worker.currentWorker[0].Username}
         </p>
-        <p className='full-box'>
+        <p className='full-box' style={{ wordBreak: 'break-all' }}>
           <span className='bold-category'>Bio:</span>{' '}
           {worker.currentWorker[0].Bio}
         </p>
@@ -154,6 +163,7 @@ const PersonalWorker = () => {
           <a
             href={'https://' + worker.currentWorker[0].WebsiteLink}
             target='_blank'
+            rel='noopener noreferrer'
           >
             {worker.currentWorker[0].WebsiteLink}
           </a>
@@ -170,6 +180,7 @@ const PersonalWorker = () => {
           <button
             onClick={() => {
               setToggle(true);
+              setCharCount(worker.currentWorker[0].Bio.length);
               loadEditInfo();
             }}
           >
@@ -194,8 +205,16 @@ const PersonalWorker = () => {
             rows='10'
             placeholder='Your bio...'
             value={bio}
-            onChange={(e) => setBio(e.target.value)}
+            onChange={(e) => {
+              setBio(e.target.value);
+              setCharCount(e.target.value.length);
+            }}
           ></textarea>
+          <div>
+            <small className='character-count'>
+              Characters: {charCount}/255
+            </small>
+          </div>
           <label htmlFor='contactEmail'>Contact Email:</label>
           <input
             name='contactEmail'

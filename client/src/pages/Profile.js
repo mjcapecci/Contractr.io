@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { authLoading } from '../actions/authActions';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import PersonalProfile from '../components/Profile/PersonalProfile';
 import PersonalWorker from '../components/Profile/PersonalWorker';
 import PersonalSkills from '../components/Profile/PersonalSkills';

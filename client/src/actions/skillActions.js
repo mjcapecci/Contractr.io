@@ -2,7 +2,6 @@ import axios from 'axios';
 import {
   GET_MY_SKILLS,
   ADD_SKILL,
-  UPDATE_MY_SKILL,
   DELETE_MY_SKILL,
   SKILL_LOADING,
   SKILL_ERROR,
@@ -37,7 +36,7 @@ export const addSkill = (skill) => async (dispatch) => {
     },
   };
   const res = await axios.post('/api/skills/add', { skill }, config);
-  if (res.data == 'Duplicate Entry') {
+  if (res.data === 'Duplicate Entry') {
     dispatch({
       type: SKILL_ERROR,
       payload: res.data,

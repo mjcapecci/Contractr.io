@@ -15,6 +15,7 @@ const MainSearchBar = ({ clear }) => {
       setKeyword(search.keywordField);
       setLocation(search.locationField);
     }
+    // eslint-disable-next-line
   }, [search]);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const MainSearchBar = ({ clear }) => {
       setKeyword('');
       setLocation('');
     }
+    // eslint-disable-next-line
   }, []);
 
   const onSubmit = () => {

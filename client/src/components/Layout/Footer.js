@@ -6,7 +6,16 @@ const Footer = () => {
   return (
     <footer className='container'>
       <div>
-        <small>©{new Date().getFullYear()} Built by Michael Capecci</small>
+        <small>
+          ©{new Date().getFullYear()} Built by{' '}
+          <a
+            href='https://www.michaelcapecci.com'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Michael Capecci
+          </a>
+        </small>
       </div>
       <div>
         <small>

@@ -8,7 +8,11 @@ const SearchInputs = ({ data }) => {
         <div className='row'>
           <div className='worker-search-picture col-sm'>
             <h3>{data.NameOf}</h3>
-            <img src={data.Photo} height='100px'></img>
+            <img
+              src={data.Photo}
+              height='100px'
+              alt={'Photo of ' + data.NameOf}
+            ></img>
           </div>
           <div className='worker-search-info col-sm'>
             <p>{data.DisplayLocation}</p>

@@ -14,10 +14,12 @@ const Navbar = (props) => {
   useEffect(() => {
     dispatch(getStatus());
     dispatch(getProfile());
+    // eslint-disable-next-line
   }, [authState]);
 
   useEffect(() => {
     setActiveLink(path);
+    // eslint-disable-next-line
   }, [path]);
 
   const guestLinks = (
@@ -61,18 +63,7 @@ const Navbar = (props) => {
   );
 
   return (
-    <nav className='navbar navbar-expand-lg navbar-dark bg-dark justify-content-between shadow'>
-      <button
-        className='navbar-toggler'
-        type='button'
-        data-toggle='collapse'
-        data-target='#main-nav'
-        aria-controls='navbarTogglerDemo01'
-        aria-expanded='false'
-        aria-label='Toggle navigation'
-      >
-        <span class='navbar-toggler-icon'></span>
-      </button>
+    <nav className='navbar navbar-expand-lg navbar-dark bg-dark justify-content-between shadow hide-in-mobile'>
       <Link className='navbar-brand' to='/' onClick={() => setActiveLink('/')}>
         Contractr.io
       </Link>

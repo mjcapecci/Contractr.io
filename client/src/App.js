@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './global.scss';
 
@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 // Layout
+import MobileNavbar from './components/Layout/MobileNavbar';
 import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
 
@@ -22,6 +23,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
+        <MobileNavbar />
         <div className='main'>
           <Navbar></Navbar>
           <div className='container content-container'>

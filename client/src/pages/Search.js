@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import MainSearchBar from '../components/Search/MainSearchBar';
 import SearchInputGroup from '../components/Search/SearchInputGroup';

@@ -54,7 +54,7 @@ hr {
 }
 
 .workerInfo {
-  white-space: pre;
+  white-space: normal;
 
   .worker-grid {
     display: grid;
@@ -129,4 +129,8 @@ i {
   &:hover {
     background: #025cac;
   }
+}
+
+.character-count {
+  color: grey;
 }

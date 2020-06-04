@@ -24,6 +24,7 @@ const PersonalSkills = () => {
     if (worker.currentWorker.length > 0) {
       dispatch(getMySkills(worker.currentWorker[0].UniqWorker));
     }
+    // eslint-disable-next-line
   }, [worker, skills.length]);
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const PersonalSkills = () => {
         setLoading(false);
       }, 500);
     }
+    // eslint-disable-next-line
   }, [loading]);
 
   return !loading ? (

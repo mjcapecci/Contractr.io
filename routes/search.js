@@ -31,6 +31,7 @@ router.get('/', async (req, res) => {
     return;
   }
   const radiusQuery = await getRadius(location, 50);
+  console.log(radiusQuery);
   try {
     let sql = `
     CREATE TEMPORARY TABLE skilltemp
@@ -71,14 +72,19 @@ router.get('/', async (req, res) => {
 });
 
 function getRadius(location, mileage) {
+  location = location.replace(/\D/g, '');
   return new Promise((resolve) => {
-    let radiusCodesStr = '';
-    let radiusCodes = zip.radius(location, mileage);
-    radiusCodes.forEach((code) => {
-      radiusCodesStr += `'${code.toString()}', `;
-    });
-    radiusCodesStr = radiusCodesStr.substring(0, radiusCodesStr.length - 2);
-    resolve(radiusCodesStr);
+    if (location) {
+      let radiusCodesStr = '';
+      let radiusCodes = zip.radius(location, mileage);
+      radiusCodes.forEach((code) => {
+        radiusCodesStr += `'${code.toString()}', `;
+      });
+      radiusCodesStr = radiusCodesStr.substring(0, radiusCodesStr.length - 2);
+      resolve(radiusCodesStr);
+    } else {
+      resolve('00000');
+    }
   });
 }
 

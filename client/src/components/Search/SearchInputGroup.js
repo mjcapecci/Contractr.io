@@ -11,17 +11,17 @@ const SearchInputGroup = () => {
   return (
     <>
       <h2 className='mt-4 mb-4'>
-        {results.length > 0 && results != 'Please enter all search terms.'
+        {results.length > 0 && results !== 'Please enter all search terms.'
           ? 'Search Results'
           : ''}
       </h2>
       <ul className='list-group mt-4 search-results shadow'>
-        {results != 'Please enter all search terms.' &&
+        {results !== 'Please enter all search terms.' &&
           results.map((input) => (
             <SearchInputs data={input} key={resultCounter++} />
           ))}
       </ul>
-      {results == 'Please enter all search terms.' && (
+      {results === 'Please enter all search terms.' && (
         <>
           <h5>There are no results for this search!</h5>
           <small>Please make sure both search fields are complete.</small>

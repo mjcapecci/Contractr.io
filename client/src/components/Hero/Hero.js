@@ -10,6 +10,7 @@ const Hero = () => {
 
   useEffect(() => {
     dispatch(clearSearch());
+    // eslint-disable-next-line
   }, []);
 
   return (

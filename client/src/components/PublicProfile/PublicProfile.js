@@ -12,6 +12,7 @@ const PublicProfile = ({ user }) => {
 
   useEffect(() => {
     dispatch(getPublicProfile(user));
+    // eslint-disable-next-line
   }, []);
 
   let skills = info
@@ -21,7 +22,7 @@ const PublicProfile = ({ user }) => {
   console.log(skills);
 
   if (!loading && info) {
-    return info.profile.length != 0 ? (
+    return info.profile.length !== 0 ? (
       <div className='user'>
         <h1>{info.profile[0].NameOf}</h1>
         <h3>{user}</h3>
