@@ -31,7 +31,6 @@ router.get('/', async (req, res) => {
     return;
   }
   const radiusQuery = await getRadius(location, 50);
-  console.log(radiusQuery);
   try {
     let sql = `
     CREATE TEMPORARY TABLE skilltemp

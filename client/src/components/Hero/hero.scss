@@ -6,6 +6,7 @@
 
 .about {
   margin-top: 5rem;
+  width: 100%;
 
   .about-cards {
     display: flex;
@@ -24,5 +25,14 @@
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 764px) {
+  .about-cards {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about-card-cards {
+    min-width: 100%;
+  }
 }

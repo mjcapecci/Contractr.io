@@ -5,3 +5,18 @@
 img {
   border-radius: 50%;
 }
+
+@media (max-width: 764px) {
+  .mobile-search {
+    width: 100%;
+
+    .input-group {
+      margin: 2rem 0;
+      width: 100%;
+
+      .input-group-prepend {
+        width: 4rem;
+      }
+    }
+  }
+}
