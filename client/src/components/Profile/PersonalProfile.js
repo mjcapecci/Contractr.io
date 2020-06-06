@@ -18,7 +18,7 @@ const PersonalProfile = () => {
       />
       <hr />
       <h1 className='text-center'>{user.name}</h1>
-      <hr />
+      <hr className='bottom-line' />
       <p className='full-box'>
         <span className='bold-category'>Email:</span> {user.email}
       </p>

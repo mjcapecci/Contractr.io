@@ -87,7 +87,11 @@ const MobileNavbar = () => {
         }}
       >
         <motion.div
-          animate={isToggled ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+          animate={
+            isToggled
+              ? { rotate: 45, y: 5, scale: 0.5 }
+              : { rotate: 0, y: 0, scale: 1 }
+          }
           className='mobile-nav-button-line mobile-only'
         ></motion.div>
         <motion.div
@@ -96,7 +100,11 @@ const MobileNavbar = () => {
           className='mobile-nav-button-line mobile-only'
         ></motion.div>
         <motion.div
-          animate={isToggled ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+          animate={
+            isToggled
+              ? { rotate: -45, y: -7, scale: 0.5 }
+              : { rotate: 0, y: 0, scale: 1 }
+          }
           className='mobile-nav-button-line mobile-only'
         ></motion.div>
       </motion.div>

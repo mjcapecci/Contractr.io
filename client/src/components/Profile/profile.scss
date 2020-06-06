@@ -1,5 +1,18 @@
 hr {
-  background: white;
+  border: none;
+  border-bottom: 1px solid #f7f7f7;
+  opacity: 0.4;
+  box-shadow: 0 0px 5px 1px rgba(245, 209, 141, 0.4);
+}
+
+img {
+  margin: 2rem 0 3rem 0;
+  border: 1px solid rgba(245, 209, 141, 0.4);
+  box-shadow: 0 0px 5px 1px rgba(245, 209, 141, 0.4);
+}
+
+.bio {
+  padding: 5rem 0;
 }
 
 .green {
@@ -117,6 +130,7 @@ i {
 }
 
 .full-box {
+  margin: 2rem 0;
   border-left: 1px solid #0275d8;
 }
 
@@ -131,6 +145,16 @@ i {
   }
 }
 
+.bottom-line {
+  margin-bottom: 1rem;
+}
+
 .character-count {
   color: grey;
+}
+
+@media (max-width: 764px) {
+  img {
+    margin-top: 0;
+  }
 }

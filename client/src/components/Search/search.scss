@@ -6,9 +6,22 @@ img {
   border-radius: 50%;
 }
 
+.search-results {
+  min-height: 25rem;
+}
+
+.mobile-search {
+  margin-top: 4rem;
+  min-height: 10rem;
+}
+
 @media (max-width: 764px) {
+  .search-results {
+    min-height: 0rem;
+  }
   .mobile-search {
     width: 100%;
+    margin-top: 0rem;
 
     .input-group {
       margin: 2rem 0;

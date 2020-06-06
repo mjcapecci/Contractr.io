@@ -8,8 +8,8 @@ const NoMatch = () => {
         <title>Contractr.io | 404</title>
       </Helmet>
       <div>
-        <h1>404... Oops!</h1>
-        <h5>It looks like this page doesn't exist!</h5>
+        <h1 className='text-center'>404... Oops!</h1>
+        <h5 className='text-center'>It looks like this page doesn't exist!</h5>
       </div>
     </>
   );

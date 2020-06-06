@@ -143,16 +143,18 @@ const PersonalWorker = () => {
     </>
   ) : (
     <>
+      <h2 className='text-center'>Bio</h2>
+      <hr className='bottom-line' />
+      <p className='bio' style={{ wordBreak: 'break-all' }}>
+        {worker.currentWorker[0].Bio}
+      </p>
+      <hr />
       <div className='workerInfo'>
         <h2 className='text-center'>Worker Info</h2>
-        <hr />
+        <hr className='bottom-line' />
         <p className='full-box'>
           <span className='bold-category'>Username:</span>{' '}
           {worker.currentWorker[0].Username}
-        </p>
-        <p className='full-box' style={{ wordBreak: 'break-all' }}>
-          <span className='bold-category'>Bio:</span>{' '}
-          {worker.currentWorker[0].Bio}
         </p>
         <p className='full-box'>
           <span className='bold-category'>Contact Email:</span>{' '}

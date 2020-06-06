@@ -73,17 +73,18 @@ const MainSearchBar = ({ clear }) => {
             onChange={(e) => setLocation(e.target.value)}
           />
         </div>
-      </div>
-      <div>
+
         <div>
-          <Link
-            to='/search'
-            className='btn btn-primary btn-lg mt-4'
-            role='button'
-            onClick={() => onSubmit()}
-          >
-            Search
-          </Link>
+          <div>
+            <Link
+              to='/search'
+              className='btn btn-primary btn-lg mt-4'
+              role='button'
+              onClick={() => onSubmit()}
+            >
+              Search
+            </Link>
+          </div>
         </div>
       </div>
     </Fragment>
@@ -98,11 +99,7 @@ const MainSearchBar = ({ clear }) => {
           </div>
           <input
             type='text'
-            className={
-              mobile
-                ? 'form-control rounded-right'
-                : 'form-control mr-3 rounded-right'
-            }
+            className={'form-control rounded-right'}
             placeholder='Skills, Keywords, Etc.'
             aria-label='Skills, Keywords, Etc.'
             aria-describedby='addon-wrapping'
@@ -126,17 +123,18 @@ const MainSearchBar = ({ clear }) => {
             onChange={(e) => setLocation(e.target.value)}
           />
         </div>
-      </div>
-      <div>
+
         <div>
-          <Link
-            to='/search'
-            className='btn btn-primary btn-lg mt-4'
-            role='button'
-            onClick={() => onSubmit()}
-          >
-            Search
-          </Link>
+          <div>
+            <Link
+              to='/search'
+              className='btn btn-primary btn-lg mt-4'
+              role='button'
+              onClick={() => onSubmit()}
+            >
+              Search
+            </Link>
+          </div>
         </div>
       </div>
     </Fragment>
