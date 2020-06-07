@@ -7,7 +7,7 @@ const users_access = require('../data_access/users_access');
 // @desc    Redirects user after verified login
 // Private
 router.get('/', auth, (req, res) => {
-  res.redirect(301, 'http://localhost:3000/');
+  res.redirect(301, 'https://www.contractr.io/');
 });
 
 // @route   GET api/users/auth

@@ -7,7 +7,7 @@ const LoginForm = () => {
       <button
         className='mx-auto d-block'
         onClick={() => {
-          window.location.href = 'http://localhost:5000/api/auth/google';
+          window.location.href = 'https://www.contractr.io/api/auth/google';
         }}
       >
         <i class='fab fa-google'></i> Login with <strong>Google</strong>
