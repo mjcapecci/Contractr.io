@@ -1,25 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../utils/db');
-const asyncSQL = require('../utils/asyncSQL');
+const skills_access = require('../data_access/skills_access');
 const auth = require('../middleware/auth');
 
 // @route   POST api/skills
 // @desc    Selects all skills associated with the posted worker
 // Private
-router.post('/', auth, (req, res) => {
+router.post('/', auth, async (req, res) => {
   const { worker } = req.body;
   try {
-    let sql = `
-    SELECT workerskilljt.UniqSkill, skill.NameOf FROM workerskilljt
-    INNER JOIN skill
-    ON workerskilljt.UniqSkill = skill.UniqSkill
-    WHERE workerskilljt.UniqWorker = ${worker}
-    `;
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      res.status(200).send(result);
-    });
+    const result = await skills_access.selectSkillsByWorkerId(worker);
+    res.status(200).send(result);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Internal Server Error');
@@ -33,21 +24,13 @@ router.post('/add', auth, async (req, res) => {
   const { skill } = req.body;
   const user = req.user[0].UniqUser;
 
-  const skillExists = await asyncSQL.checkForSkill(skill);
-  if (skillExists.length == 0) await asyncSQL.addSkillToPool(skill);
-  const workerSkill = await asyncSQL.addWorkerSkill(user, skill);
+  const skillExists = await skills_access.checkForSkill(skill);
+  if (skillExists.length === 0) await skills_access.addSkillToPool(skill);
+  const workerSkill = await skills_access.addWorkerSkill(user, skill);
   if (workerSkill != 'Error: Duplicate Entry') {
     try {
-      let sql = `
-      SELECT workerskilljt.UniqSkill, skill.NameOf FROM workerskilljt
-      INNER JOIN skill
-      ON workerskilljt.UniqSkill = skill.UniqSkill
-      WHERE workerskilljt.UniqWorker = ${user}
-      `;
-      db.query(sql, (err, result) => {
-        if (err) throw err;
-        res.status(200).send(result);
-      });
+      const result = await skills_access.selectSkillsByUserId(user);
+      res.status(200).send(result);
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Internal Server Error');
@@ -65,21 +48,13 @@ router.put('/:skill', auth, async (req, res) => {
   const skill = req.params.skill;
   const initialSkill = req.body.initialSkill;
 
-  await asyncSQL.deleteSkillFromWorker(user, initialSkill);
-  const skillExists = await asyncSQL.checkForSkill(skill);
-  if (skillExists.length == 0) await asyncSQL.addSkillToPool(skill);
-  await asyncSQL.addWorkerSkill(user, skill);
+  await skills_access.deleteSkillFromWorker(user, initialSkill);
+  const skillExists = await skills_access.checkForSkill(skill);
+  if (skillExists.length == 0) await skills_access.addSkillToPool(skill);
+  await skills_access.addWorkerSkill(user, skill);
   try {
-    let sql = `
-    SELECT workerskilljt.UniqSkill, skill.NameOf FROM workerskilljt
-    INNER JOIN skill
-    ON workerskilljt.UniqSkill = skill.UniqSkill
-    WHERE workerskilljt.UniqWorker = ${user}
-    `;
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      res.status(200).send(result);
-    });
+    const result = await skills_access.selectSkillsByUserId(user);
+    res.status(200).send(result);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Internal Server Error');
@@ -92,18 +67,10 @@ router.put('/:skill', auth, async (req, res) => {
 router.delete('/:skill', auth, async (req, res) => {
   const user = req.user[0].UniqUser;
   const skill = req.params.skill;
-  await asyncSQL.deleteSkillFromWorker(user, skill);
+  await skills_access.deleteSkillFromWorker(user, skill);
   try {
-    let sql = `
-    SELECT workerskilljt.UniqSkill, skill.NameOf FROM workerskilljt
-    INNER JOIN skill
-    ON workerskilljt.UniqSkill = skill.UniqSkill
-    WHERE workerskilljt.UniqWorker = ${user}
-    `;
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      res.status(200).send(result);
-    });
+    const result = await skills_access.selectSkillsByUserId(user);
+    res.status(200).send(result);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Internal Server Error');

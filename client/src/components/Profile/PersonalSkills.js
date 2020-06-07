@@ -93,10 +93,9 @@ const PersonalSkills = () => {
       </div>
     )
   ) : (
-    <>
-      <h3 className='text-center'>My Skills</h3>
+    <div className='skillsInfo'>
       <Preloader />
-    </>
+    </div>
   );
 };
 

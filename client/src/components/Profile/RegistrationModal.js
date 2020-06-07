@@ -24,20 +24,6 @@ const RegistrationModal = ({
   const newWorkerExists = useSelector((state) => state.worker.newWorkerExists);
   const dispatch = useDispatch();
 
-  const addApostropheForSQL = (str) => {
-    let editedStrArr = [];
-    let strArr = str.split('');
-    // eslint-disable-next-line
-    strArr.map((char) => {
-      if (char === "'") {
-        editedStrArr.push("''");
-      } else {
-        editedStrArr.push(char);
-      }
-    });
-    return editedStrArr.join('');
-  };
-
   const onSubmit = async () => {
     const newWorkerInfo = {
       username,
@@ -63,7 +49,7 @@ const RegistrationModal = ({
 
   const onUpdate = () => {
     const updatedWorkerInfo = {
-      bio: addApostropheForSQL(bio),
+      bio,
       contactEmail,
       website,
       location,

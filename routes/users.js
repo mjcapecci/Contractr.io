@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
-const asyncSQL = require('../utils/asyncSQL');
+const users_access = require('../data_access/users_access');
 
 // @route   GET api/users
 // @desc    Redirects user after verified login
@@ -36,8 +36,8 @@ router.get('/profile', auth, (req, res) => {
 // Public
 router.get('/public', async (req, res) => {
   const username = req.query.username;
-  const publicProfile = await asyncSQL.getPublicProfile(username);
-  const publicSkills = await asyncSQL.getPublicSkills(username);
+  const publicProfile = await users_access.getPublicProfile(username);
+  const publicSkills = await users_access.getPublicSkills(username);
   res.json({ profile: publicProfile, skills: publicSkills });
 });
 

@@ -72,7 +72,9 @@ const PersonalWorker = () => {
           <label htmlFor='username'>
             Username:{' '}
             {newWorkerExists && (
-              <small className='red'>*that username is unavailable</small>
+              <small className='username-error'>
+                *that username is unavailable
+              </small>
             )}
           </label>
           <input

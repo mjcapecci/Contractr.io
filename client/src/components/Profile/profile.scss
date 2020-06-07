@@ -23,6 +23,10 @@ img {
   color: darkred;
 }
 
+.username-error {
+  color: rgb(240, 144, 144);
+}
+
 .blue-down {
   transform: scale(0.9);
 }
@@ -151,6 +155,10 @@ i {
 
 .character-count {
   color: grey;
+}
+
+.skillsInfo {
+  min-height: 5rem;
 }
 
 @media (max-width: 764px) {

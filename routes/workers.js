@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const asyncSQL = require('../utils/asyncSQL');
+const workers_access = require('../data_access/workers_access');
 const auth = require('../middleware/auth');
 
 // @route   GET api/workers
 // @desc    Checks to see if user's desired worker username exists already
 // Private
 router.get('/', auth, async (req, res) => {
-  const worker = await asyncSQL.checkForWorker(req.user[0].UniqUser);
+  const worker = await workers_access.checkForWorker(req.user[0].UniqUser);
   res.status(201).send(worker);
 });
 
@@ -17,8 +17,8 @@ router.get('/', auth, async (req, res) => {
 router.post('/', auth, async (req, res) => {
   const user = req.user[0].UniqUser;
   const workerInfo = req.body;
-  await asyncSQL.addWorker(user, workerInfo);
-  const worker = await asyncSQL.checkForWorker(req.user[0].UniqUser);
+  await workers_access.addWorker(user, workerInfo);
+  const worker = await workers_access.checkForWorker(req.user[0].UniqUser);
   res.send(worker);
 });
 
@@ -28,8 +28,8 @@ router.post('/', auth, async (req, res) => {
 router.put('/', auth, async (req, res) => {
   const user = req.user[0].UniqUser;
   const workerInfo = req.body;
-  await asyncSQL.updateWorker(user, workerInfo);
-  const worker = await asyncSQL.checkForWorker(req.user[0].UniqUser);
+  await workers_access.updateWorker(user, workerInfo);
+  const worker = await workers_access.checkForWorker(req.user[0].UniqUser);
   res.send(worker);
 });
 
@@ -38,7 +38,7 @@ router.put('/', auth, async (req, res) => {
 // Private
 router.post('/username', auth, async (req, res) => {
   const username = req.body.username;
-  const userExists = await asyncSQL.checkForUsername(username);
+  const userExists = await workers_access.checkForUsername(username);
   if (userExists.length > 0) {
     res.send(true);
   } else {
