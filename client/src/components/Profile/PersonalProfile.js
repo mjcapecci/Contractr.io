@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 import Preloader from '../Layout/Preloader';
 import './profile.scss';
 
@@ -8,9 +9,19 @@ const PersonalProfile = () => {
   const user = useSelector((state) => state.user.user);
   const loading = useSelector((state) => state.user.loading);
   let isWorker = useSelector((state) => state.worker.currentWorker);
+
+  const variants = {
+    initial: { opacity: 0 },
+    end: { opacity: 1 },
+  };
+
   return !loading ? (
     <div className='userInfo'>
-      <img
+      <motion.img
+        initial='initial'
+        animate='end'
+        variants={variants}
+        transition={{ duration: 1 }}
         className='mx-auto d-block'
         src={user.photo}
         alt={user.name + "'s profile picture."}

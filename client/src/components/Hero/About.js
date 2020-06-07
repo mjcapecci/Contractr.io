@@ -7,19 +7,19 @@ const About = () => {
     <section className='about'>
       <h2 className='text-center'>What is Contractr.io?</h2>
       <div className='about-cards'>
-        <div className='about-card-cards'>
+        <div className='about-card-cards shadow'>
           <p>
             Contractr.io is a tool for linking clients with contractors who can
             help them complete specialized projects.
           </p>
         </div>
-        <div className='about-card-cards'>
+        <div className='about-card-cards shadow'>
           <p>
             Our objective is to provide a lightweight, no-frills solution for
             helping people get work done.
           </p>
         </div>
-        <div className='about-card-cards'>
+        <div className='about-card-cards shadow'>
           <p>
             This tool will be free forever, does not expect any percentage of
             money that is exchanged between parties, and is completely open

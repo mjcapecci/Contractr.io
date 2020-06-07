@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getStatus } from '../../actions/authActions';
 import { getProfile, logoutUser } from '../../actions/userActions';
 import { Link, useLocation } from 'react-router-dom';
+import Preloader from './Preloader';
 import './layout.scss';
 
 const Navbar = (props) => {
@@ -10,6 +11,8 @@ const Navbar = (props) => {
   const authState = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const [activeLink, setActiveLink] = useState(path);
+
+  const [logoutTimer, setLogoutTimer] = useState(false);
 
   useEffect(() => {
     dispatch(getStatus());
@@ -50,13 +53,21 @@ const Navbar = (props) => {
           className='nav-link'
           to='/'
           onClick={() => {
+            setLogoutTimer(true);
             dispatch(logoutUser());
             setTimeout(() => {
               window.location.reload();
             }, 1000);
           }}
         >
-          Logout
+          {!logoutTimer ? (
+            'Logout'
+          ) : (
+            <Preloader
+              height={'30px'}
+              style={{ transform: 'translateY(5px)' }}
+            />
+          )}
         </Link>
       </li>
     </Fragment>

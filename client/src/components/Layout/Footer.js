@@ -17,7 +17,7 @@ const Footer = () => {
           </a>
         </small>
       </div>
-      <div>
+      <div className='hide-in-mobile'>
         <small>
           <Link to='/upcoming'>Upcoming Features</Link>
         </small>

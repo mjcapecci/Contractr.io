@@ -1,13 +1,17 @@
 .search-results {
   margin: 0 auto;
+  min-height: 25rem;
+
+  .search-result-name {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(220, 220, 220, 0.2);
+  }
 }
 
 img {
   border-radius: 50%;
-}
-
-.search-results {
-  min-height: 25rem;
 }
 
 .mobile-search {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
+import LoginAbout from '../components/Login/LoginAbout';
 import LoginForm from '../components/Login/LoginForm';
 
 const Login = () => {
@@ -9,7 +10,7 @@ const Login = () => {
       <Helmet>
         <title>Contractr.io | Login</title>
       </Helmet>
-      <h2>Create an account to connect with or become a contractor.</h2>
+      <LoginAbout />
       <LoginForm></LoginForm>
     </>
   );

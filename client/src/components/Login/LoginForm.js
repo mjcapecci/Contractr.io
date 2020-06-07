@@ -5,6 +5,7 @@ const LoginForm = () => {
   return (
     <div>
       <button
+        className='mx-auto d-block'
         onClick={() => {
           window.location.href = 'http://localhost:5000/api/auth/google';
         }}

@@ -2,8 +2,14 @@
   height: auto;
 }
 
+.preloader {
+  border: 'none';
+  box-shadow: 'none';
+}
+
 .navbar {
   margin-bottom: 1rem;
+  max-height: 3.5rem;
 }
 
 footer {

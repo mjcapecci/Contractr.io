@@ -12,7 +12,7 @@ const SearchInputGroup = () => {
     <div className='search-results'>
       <h2 className='mt-4 mb-4'>
         {results.length > 0 && results !== 'Please enter all search terms.'
-          ? 'Search Results'
+          ? `Search Results (${results.length})`
           : ''}
       </h2>
       <ul className='list-group mt-4 search-results'>

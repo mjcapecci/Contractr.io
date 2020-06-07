@@ -17,6 +17,7 @@ import Search from './pages/Search';
 import User from './pages/User';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import Upcoming from './pages/Upcoming';
 import NoMatch from './pages/NoMatch';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <Route exact path='/login' component={Login} />
               <Route exact path='/user/:user' component={User} />
               <Route exact path='/profile' component={Profile} />
+              <Route exact path='/upcoming' component={Upcoming} />
               <Route component={NoMatch} />
             </Switch>
           </div>

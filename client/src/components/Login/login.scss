@@ -1,3 +1,46 @@
 button {
   padding: 1rem;
 }
+
+.login-about {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+
+    li {
+      margin: 1rem;
+      text-align: left;
+    }
+  }
+
+  .login-about-content {
+    height: 100%;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 0 2rem 0 0;
+
+    h2 {
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(220, 220, 220, 0.2);
+    }
+  }
+}
+
+@media (max-width: 764px) {
+  button {
+    margin-bottom: 3rem;
+  }
+
+  .login-about {
+    flex-direction: column;
+
+    .login-about-content {
+      margin: 2rem 0 0 0;
+    }
+  }
+}
