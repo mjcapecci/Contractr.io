@@ -7,7 +7,8 @@ const LoginForm = () => {
       <button
         className='mx-auto d-block'
         onClick={() => {
-          window.location.href = 'https://www.contractr.io/api/auth/google';
+          window.location.href =
+            'https://contractr-io.herokuapp.com/api/auth/google';
         }}
       >
         <i class='fab fa-google'></i> Login with <strong>Google</strong>

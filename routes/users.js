@@ -7,7 +7,7 @@ const users_access = require('../data_access/users_access');
 // @desc    Redirects user after verified login
 // Private
 router.get('/', auth, (req, res) => {
-  res.redirect(301, 'https://www.contractr.io/');
+  res.redirect(301, 'https://contractr-io.herokuapp.com/');
 });
 
 // @route   GET api/users/auth
