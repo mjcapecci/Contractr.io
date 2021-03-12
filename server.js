@@ -5,6 +5,8 @@ const db = require('./utils/db');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 
+app.enable('trust proxy');
+
 app.use(express.json({ extended: false }));
 app.use(
   cookieSession({
